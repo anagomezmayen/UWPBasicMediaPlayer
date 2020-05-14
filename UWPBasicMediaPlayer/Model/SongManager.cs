@@ -16,6 +16,14 @@ namespace UWPBasicMediaPlayer.Model
             allSongs.ForEach(song => songs.Add(song));
 
         }
+        public static void GetSongsByCategory(ObservableCollection<Song> songs, SongCategory category)
+        {
+            var allSongs = getSongs();
+            var filteredSongs = allSongs.Where(song => song.Category == category).ToList();
+            songs.Clear();
+            filteredSongs.ForEach(song => songs.Add(song)); //lambda expression
+
+        }
         /**
          * This method read the name files in the carpet music and make the list of Songs
          */
