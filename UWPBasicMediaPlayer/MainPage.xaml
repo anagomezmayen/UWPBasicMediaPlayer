@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:UWPBasicMediaPlayer"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:model="using:UWPBasicMediaPlayer.Model"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -25,11 +25,11 @@
             <Button Name="PreviousButton"
                 RelativePanel.RightOf="BackButton"
                 FontFamily="Segoe MDL2 Assets"
-                Content="&#xE892;" Height ="50" Width="50" Click="PlayButton_Click" />
+                Content="&#xE892;" Height ="50" Width="50" Click="PreviousButton_Click_1" />
             <Button Name="PauseButton"
                 RelativePanel.RightOf="PreviousButton"
                 FontFamily="Segoe MDL2 Assets"
-                Content="&#xEDB4;" Height ="50" Width="50" Click="PlayButton_Click" />
+                Content="&#xEDB4;" Height ="50" Width="50" Click="PauseButton_Click" />
             <Button Name="PlayButton"
                 RelativePanel.RightOf="PauseButton"
                 FontFamily="Segoe MDL2 Assets"
@@ -37,7 +37,7 @@
             <Button Name="ForwardButton"
                 RelativePanel.RightOf="PlayButton"
                 FontFamily="Segoe MDL2 Assets"
-                Content="&#xE893;" Height ="50" Width="50" Click="PlayButton_Click" />
+                Content="&#xE893;" Height ="50" Width="50" Click="ForwardButton_Click" />
 
         </RelativePanel>
         <SplitView Grid.Row="1"  Name="MySplitView"
@@ -60,28 +60,31 @@
             </SplitView.Pane>
         </SplitView>-->
 
-            <!--<SplitView.Content>
-            <Grid Margin="20,20,0,0" >
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-                <MediaElement Name="MyMediaElement" AutoPlay="True" />
-                <TextBlock Name="CategoryTextBlock" Text="All Sounds" FontSize="24" />
-                <GridView Grid.Row="1" 
+            <SplitView.Content>
+                <Grid Margin="20,20,0,0" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <MediaElement Name="MyMediaElement" AutoPlay="True" />
+                    <TextBlock Name="CategoryTextBlock" Text="All Songs" FontSize="24" />
+                    <GridView Grid.Row="1" 
                                   Name="SongGridView" 
                                   IsItemClickEnabled="True"
-                                  ItemsSource="{x:Bind Sounds}"
-                                  ItemClick="SongGridView_ItemClick"
+                                  ItemsSource="{x:Bind Songs}"
+                                  ItemClick="SongGridView_ItemClick"                   
                                   >
-                    <GridView.ItemTemplate>
-                        <DataTemplate x:DataType="model:Song">
-                            <Image Name="MyImage" Height="112" Width="101" Source="{x:Bind ImageFile}" />
-                        </DataTemplate>
-                    </GridView.ItemTemplate>
-                </GridView>
-            </Grid>
-            </SplitView.Content>-->
+                        <GridView.ItemTemplate>
+                            <DataTemplate x:DataType="model:Song">
+                                <StackPanel Orientation="Vertical">
+                                    <Image Name="MyImage" Height="112" Width="101" Source="Assets/Images/songGeneral.png"/>
+                                    <TextBlock Text="{x:Bind Title}" FontSize="18" Margin="10,0,0,0" VerticalAlignment="Center" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </GridView.ItemTemplate>
+                    </GridView>
+                </Grid>
+            </SplitView.Content>
         </SplitView>
         </Grid>
 </Page>
