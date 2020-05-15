@@ -4,7 +4,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:UWPBasicMediaPlayer"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:model="using:UWPBasicMediaPlayer.Model"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:model="using:UWPBasicMediaPlayer.Model"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -25,7 +26,7 @@
             <Button Name="PreviousButton"
                 RelativePanel.RightOf="BackButton"
                 FontFamily="Segoe MDL2 Assets"
-                Content="&#xE892;" Height ="50" Width="50" Click="PreviousButton_Click_1" />
+                Content="&#xE892;" Height ="50" Width="50" Click="PreviousButton_Click" />
             <Button Name="PauseButton"
                 RelativePanel.RightOf="PreviousButton"
                 FontFamily="Segoe MDL2 Assets"

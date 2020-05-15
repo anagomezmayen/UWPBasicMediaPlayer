@@ -69,6 +69,11 @@ namespace UWPBasicMediaPlayer
             var song = (Song)e.ClickedItem;
             MyMediaElement.Source = new Uri(BaseUri, song.SongFile);
         }
+
+        private void PreviousButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 
 
