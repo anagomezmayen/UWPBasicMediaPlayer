@@ -25,6 +25,8 @@ namespace UWPBasicMediaPlayer
     public sealed partial class MainPage : Page
     {
         private ObservableCollection<Song> Songs;
+        private Song previousSong;
+        private Song currentSong;
 
         public MainPage()
         {
@@ -34,11 +36,6 @@ namespace UWPBasicMediaPlayer
         }
 
         private void HamburgerButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void PreviousButton_Click_1(object sender, RoutedEventArgs e)
         {
 
         }
@@ -55,7 +52,6 @@ namespace UWPBasicMediaPlayer
 
         private void ForwardButton_Click(object sender, RoutedEventArgs e)
         {
-
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
@@ -66,14 +62,26 @@ namespace UWPBasicMediaPlayer
         private void SongGridView_ItemClick(object sender, ItemClickEventArgs e)
         {
             var song = (Song)e.ClickedItem;
-            MyMediaElement.Source = new Uri(BaseUri, song.SongFile);
+
+            // update current song and previous song
+            this.updatePreviousAndCurrentSong(song);
+
+            MyMediaElement.Source = new Uri(BaseUri, this.currentSong.SongFile);
         }
 
         private void PreviousButton_Click(object sender, RoutedEventArgs e)
         {
+            this.updatePreviousAndCurrentSong(this.previousSong);
+            if (this.currentSong != null)
+            {
+                MyMediaElement.Source = new Uri(BaseUri, this.currentSong.SongFile);
+            }
+        }
 
+        private void updatePreviousAndCurrentSong(Song currentSong)
+        {
+            this.previousSong = this.currentSong;
+            this.currentSong = currentSong;
         }
     }
-
-
 }
