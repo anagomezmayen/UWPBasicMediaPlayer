@@ -11,7 +11,7 @@ namespace UWPBasicMediaPlayer.Model
     public enum SongCategory
     {
         Classical,
-        pop,
+        Pop,
         Jazz,
         Romantic,
     }
