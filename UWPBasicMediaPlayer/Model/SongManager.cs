@@ -17,10 +17,10 @@ namespace UWPBasicMediaPlayer.Model
             allSongs.ForEach(song => songs.Add(song));
         }
 
-        public static void GetSongsByCategory(ObservableCollection<Song> songs, SongCategory category)
+        public static void GetSongsByFeature(ObservableCollection<Song> songs, FeatureItems item)
         {
             var allSongs = GetSongs();
-            var filteredSongs = allSongs.Where(song => song.Category == category).ToList();
+            var filteredSongs = allSongs.Where(song => song.Item == item).ToList();
             songs.Clear();
             filteredSongs.ForEach(song => songs.Add(song)); //lambda expression
         }

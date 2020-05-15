@@ -9,6 +9,6 @@ namespace UWPBasicMediaPlayer.Model
     class Feature
     {
         public string IconFile { get; set; }
-        public SongCategory Category { get; set; }
+        public FeatureItems Item  { get; set; }
     }
 }

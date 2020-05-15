@@ -8,24 +8,25 @@ using TagLib;
 
 namespace UWPBasicMediaPlayer.Model
 {
-    public enum SongCategory
+    public enum FeatureItems
     {
-        Classical,
-        Pop,
-        Jazz,
-        Romantic,
+        Albums,
+        Artists,
+        Favourite,
+        MyMusic,
+        Playlist,
     }
 
     /** Media element could be music or video*/
     public class Song
     {
         public string Artist { get; set; }
-        public SongCategory Category { get; set; }
         public string Album { get; set; }
         public string Title { get; set; }
         public bool IsFavorite { get; set; }
         public string SongFile { get; set; }
-       
+        public FeatureItems Item { get; set; }
+
 
         public Song(string pathToFile)
         {

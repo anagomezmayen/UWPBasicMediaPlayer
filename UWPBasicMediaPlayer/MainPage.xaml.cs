@@ -35,10 +35,12 @@ namespace UWPBasicMediaPlayer
             Songs = new ObservableCollection<Song>();
             SongManager.GetAllSongs(Songs);
             Features = new List<Feature>();
-            Features.Add(new Feature { IconFile = "Assets/Icons/animals.png", Category = SongCategory.Classical });
-            Features.Add(new Feature { IconFile = "Assets/Icons/cartoon.png", Category = SongCategory.Pop });
-            Features.Add(new Feature { IconFile = "Assets/Icons/taunt.png", Category = SongCategory.Jazz });
-            Features.Add(new Feature { IconFile = "Assets/Icons/warning.png", Category = SongCategory.Romantic });
+            Features.Add(new Feature { IconFile = "Assets/Icons/Albums.png", Item = FeatureItems.Albums  });
+            Features.Add(new Feature { IconFile = "Assets/Icons/Artists.png", Item = FeatureItems.Artists });
+            Features.Add(new Feature { IconFile = "Assets/Icons/Favourite.png", Item = FeatureItems.Favourite });
+            Features.Add(new Feature { IconFile = "Assets/Icons/MyMusic.png", Item = FeatureItems.MyMusic });
+            Features.Add(new Feature { IconFile = "Assets/Icons/Playlist.png", Item = FeatureItems.Playlist });
+
 
             BackButton.Visibility = Visibility.Collapsed;
 
@@ -52,7 +54,7 @@ namespace UWPBasicMediaPlayer
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
             SongManager.GetAllSongs(Songs);
-            CategoryTextBlock.Text = "All Sounds";
+            CategoryTextBlock.Text = "All Songs";
             FeaturesListView.SelectedItem = null;
             BackButton.Visibility = Visibility.Collapsed;
         }
@@ -96,9 +98,14 @@ namespace UWPBasicMediaPlayer
         private void FeaturesListView_ItemClick(object sender, ItemClickEventArgs e)
         {
             var Feature = (Feature)e.ClickedItem;
-            CategoryTextBlock.Text = Feature.Category.ToString();
-            SongManager.GetSongsByCategory(Songs, Feature.Category);
+            CategoryTextBlock.Text = Feature.Item.ToString();
+            SongManager.GetSongsByFeature(Songs, Feature.Item);
             BackButton.Visibility = Visibility.Visible;
         }
+
+        
+
+       
+        
     }
 }

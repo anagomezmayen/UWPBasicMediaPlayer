@@ -136,10 +136,11 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\Icons\animals.png" />
-    <Content Include="Assets\Icons\cartoon.png" />
-    <Content Include="Assets\Icons\taunt.png" />
-    <Content Include="Assets\Icons\warning.png" />
+    <Content Include="Assets\Icons\Albums.png" />
+    <Content Include="Assets\Icons\Artists.png" />
+    <Content Include="Assets\Icons\Favourite.png" />
+    <Content Include="Assets\Icons\MyMusic.png" />
+    <Content Include="Assets\Icons\Playlist.png" />
     <Content Include="Assets\Images\songGeneral.png" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\Music\01 - One Small Voice.mp3" />
