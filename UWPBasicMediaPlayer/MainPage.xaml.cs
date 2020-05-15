@@ -45,13 +45,12 @@ namespace UWPBasicMediaPlayer
 
         private void PauseButton_Click(object sender, RoutedEventArgs e)
         {
-            
-
+            MyMediaElement.Pause();
         }
 
         private void PlayButton_Click(object sender, RoutedEventArgs e)
         {
-
+            MyMediaElement.Play();
         }
 
         private void ForwardButton_Click(object sender, RoutedEventArgs e)
