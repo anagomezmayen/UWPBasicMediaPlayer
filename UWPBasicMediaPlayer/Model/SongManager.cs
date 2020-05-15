@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -18,7 +19,7 @@ namespace UWPBasicMediaPlayer.Model
         }
         public static void GetSongsByCategory(ObservableCollection<Song> songs, SongCategory category)
         {
-            var allSongs = getSongs();
+            var allSongs = GetSongs();
             var filteredSongs = allSongs.Where(song => song.Category == category).ToList();
             songs.Clear();
             filteredSongs.ForEach(song => songs.Add(song)); //lambda expression
@@ -30,7 +31,7 @@ namespace UWPBasicMediaPlayer.Model
         public static List<Song> GetSongs()
         {
             var songs = new List<Song>();
-            string[] filePaths = Directory.GetFiles($"/Assets/music");
+            string[] filePaths = Directory.GetFiles("Assets/Music");
             foreach (var filepath in filePaths)
             {
                 songs.Add(new Song(filepath));
