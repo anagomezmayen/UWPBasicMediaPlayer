@@ -55,7 +55,7 @@ namespace UWPBasicMediaPlayer
         {
             SongManager.GetAllSongs(Songs);
             CategoryTextBlock.Text = "All Songs";
-            FeaturesListView.SelectedItem = null;
+            //FeaturesListView.SelectedItem = null;
             BackButton.Visibility = Visibility.Collapsed;
         }
 
