@@ -41,7 +41,7 @@ namespace UWPBasicMediaPlayer
             Features.Add(new Feature { IconFile = "Assets/Icons/MyMusic.png", Item = FeatureItems.MyMusic });
             Features.Add(new Feature { IconFile = "Assets/Icons/Playlist.png", Item = FeatureItems.Playlist });
 
-            
+
             BackButton.Visibility = Visibility.Collapsed;
 
         }
