@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
 using TagLib;
+using Windows.Storage.Streams;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Media.Imaging;
 
 namespace UWPBasicMediaPlayer.Model
 {
@@ -25,17 +29,48 @@ namespace UWPBasicMediaPlayer.Model
         public string Title { get; set; }
         public bool IsFavorite { get; set; }
         public string SongFile { get; set; }
+        public System.TimeSpan Duration { get; set; }
+        public BitmapImage CoverImage { get; set; } //Cover Image property
         public FeatureItems Item { get; set; }
 
-
+       
         public Song(string pathToFile)
         {
-            File tagFile = File.Create(pathToFile);
+            TagLib.File tagFile = TagLib.File.Create(pathToFile);
             Artist = (string)tagFile.Tag.FirstAlbumArtist;
             Album = (string)tagFile.Tag.Album;
             Title = (string)tagFile.Tag.Title;
+            Duration = (System.TimeSpan)tagFile.Properties.Duration;
             SongFile = pathToFile;
-            IsFavorite = false; //meanwhile this property has a default value
+           if (tagFile.Tag.Pictures.Length >= 1)
+           {
+              CoverImage = GetCoverImage(tagFile.Tag.Pictures[0].Data.Data);
+            }
+            else
+            {
+                CoverImage = new BitmapImage();
+                CoverImage.UriSource = new Uri("Assets/Images/songGeneral.png");
+                //CoverImage.UriSource("");
+            }
         }
+        private BitmapImage GetCoverImage(byte[] pic)
+        {
+            using(InMemoryRandomAccessStream ms= new InMemoryRandomAccessStream())
+            {
+                using(DataWriter writer = new DataWriter(ms.GetOutputStreamAt(0)))
+                {
+                    writer.WriteBytes((byte[])pic);
+                    //the getResults here forces to wait until the operation cpmpletes
+                    writer.StoreAsync().GetResults();
+                }
+                BitmapImage image = new BitmapImage();
+                image.SetSource(ms);
+                return image;
+            }
+ 
+        }
+       
+
+      
     }
 }

@@ -71,7 +71,7 @@
                         <GridView.ItemTemplate>
                             <DataTemplate x:DataType="model:Song">
                                 <StackPanel Orientation="Vertical">
-                                    <Image Name="MyImage" Height="112" Width="101" Source="Assets/Images/songGeneral.png"/>
+                                    <Image  x:Name="MyImage" Height="112" Width="101" Source="{x:Bind CoverImage}"/>
                                     <TextBlock Text="{x:Bind Title}" FontSize="18" Margin="10,0,0,0" VerticalAlignment="Center" />
                                 </StackPanel>
                             </DataTemplate>
