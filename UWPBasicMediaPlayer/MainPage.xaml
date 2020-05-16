@@ -13,52 +13,47 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <RelativePanel>
-            <Button Name="HamburgerButton"
-                RelativePanel.AlignLeftWithPanel="True"
-                FontFamily="Segoe MDL2 Assets"
-                Content="&#xE700;" Height ="50" Width="50" Click="HamburgerButton_Click" />
-            <Button Name="BackButton"
-                RelativePanel.RightOf="HamburgerButton"
-                FontFamily="Segoe MDL2 Assets"
-                Content="&#xE0A6;" Height ="50" Width="50" Click="BackButton_Click" />
-            <Button Name="PreviousButton"
-                RelativePanel.RightOf="BackButton"
-                FontFamily="Segoe MDL2 Assets"
-                Content="&#xE892;" Height ="50" Width="50" Click="PreviousButton_Click" />
-            <Button Name="PauseButton"
-                RelativePanel.RightOf="PreviousButton"
-                FontFamily="Segoe MDL2 Assets"
-                Content="&#xEDB4;" Height ="50" Width="50" Click="PauseButton_Click" />
-            <Button Name="PlayButton"
-                RelativePanel.RightOf="PauseButton"
-                FontFamily="Segoe MDL2 Assets"
-                Content="&#xE768;" Height ="50" Width="50" Click="PlayButton_Click" />
-            <Button Name="ForwardButton"
-                RelativePanel.RightOf="PlayButton"
-                FontFamily="Segoe MDL2 Assets"
-                Content="&#xE893;" Height ="50" Width="50" Click="ForwardButton_Click" />
-            
-        </RelativePanel>
-        <SplitView Grid.Row="1"  Name="MySplitView"
-                     DisplayMode="CompactOverlay"
-                     CompactPaneLength="50"
-                     OpenPaneLength="200">
+            <RowDefinition Height="*" />
+            <RowDefinition Height="50" />
 
-            <SplitView.Pane>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Button Name="BackButton" Grid.Column="0"
+            FontFamily="Segoe MDL2 Assets"
+            Content="&#xE0A6;" Height ="50" Width="50" Click="BackButton_Click" />
+        <TextBlock Grid.Row="0" Grid.Column="0" FontSize="30" Margin ="70,0,0,0" HorizontalAlignment="Left" Width="221">
+      My Media Player
+        </TextBlock>
+
+        <TextBox Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" Margin="0,10,10,10" Width="200">
+
+        </TextBox>
+
+        <Button Name="HamburgerButton" Grid.Row="1" Grid.Column="0"
+            FontFamily="Segoe MDL2 Assets"
+            Content="&#xE700;" Height ="50" Width="50" Click="HamburgerButton_Click" VerticalAlignment="Top"/>
+
+        <SplitView Grid.Row="2"  Name="MySplitView"
+                 DisplayMode="CompactOverlay"
+                 CompactPaneLength="50"
+                 OpenPaneLength="200">
+            <!--<SplitView.Pane>
                 <ListView Name="FeaturesListView" IsItemClickEnabled="True"
                               ItemsSource="{x:Bind Features}" ItemClick="FeaturesListView_ItemClick">
                     <ListView.ItemTemplate>
-                        <DataTemplate x:DataType="model:Feature">
+                        <DataTemplate x:DataType="model:Features">
                             <StackPanel Orientation="Horizontal">
-                                <Image Source="{x:Bind IconFile}" Height="35" Width="35" Margin="-8,10,0,10" />
-                                <TextBlock Text="{x:Bind Item}" FontSize="18" Margin="10,0,0,0" VerticalAlignment="Center" />
+                                <Image Source="{x:Bind FeatureIconFile}" Height="35" Width="35" Margin="-8,10,0,10" />
+                                <TextBlock Text="{x:Bind Category}" FontSize="18" Margin="10,0,0,0" VerticalAlignment="Center" />
                             </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-            </SplitView.Pane>
+            </SplitView.Pane>-->
             <SplitView.Content>
                 <Grid Margin="20,20,0,0" >
                     <Grid.RowDefinitions>
@@ -67,11 +62,11 @@
                     </Grid.RowDefinitions>
                     <MediaElement Name="MyMediaElement" AutoPlay="True" />
                     <TextBlock Name="CategoryTextBlock" Text="All Songs" FontSize="24" />
-                    <GridView Grid.Row="1" 
-                                  Name="SongGridView" 
-                                  IsItemClickEnabled="True"
-                                  ItemsSource="{x:Bind Songs}"
-                                  ItemClick="SongGridView_ItemClick"                   
+                    <GridView Grid.Row="1"
+                        Name="SoundGridView"
+                        IsItemClickEnabled="True"
+                        ItemsSource="{x:Bind Songs}"
+                        ItemClick="SoundGridView_ItemClick"
                                   >
                         <GridView.ItemTemplate>
                             <DataTemplate x:DataType="model:Song">
@@ -81,10 +76,32 @@
                                 </StackPanel>
                             </DataTemplate>
                         </GridView.ItemTemplate>
+
                     </GridView>
                 </Grid>
             </SplitView.Content>
         </SplitView>
+
+
+        <RelativePanel  Grid.Row="3" Grid.Column="2"  VerticalAlignment="Bottom"  HorizontalAlignment="Right">
+
+            <Button Name="PreviousButton"
+      FontFamily="Segoe MDL2 Assets"
+      Content="&#xE892;" Height ="50" Width="50" Click="PreviousButton_Click_1" />
+            <Button Name="PauseButton"
+      RelativePanel.RightOf="PreviousButton"
+      FontFamily="Segoe MDL2 Assets"
+      Content="&#xEDB4;" Height ="50" Width="50" Click="PauseButton_Click" />
+            <Button Name="PlayButton"
+      RelativePanel.RightOf="PauseButton"
+      FontFamily="Segoe MDL2 Assets"
+      Content="&#xE768;" Height ="50" Width="50" Click="PlayButton_Click" />
+            <Button Name="ForwardButton"
+      RelativePanel.RightOf="PlayButton"
+      FontFamily="Segoe MDL2 Assets"
+      Content="&#xE893;" Height ="50" Width="50" Click="ForwardButton_Click" />
+        </RelativePanel>
+
     </Grid>
 </Page>
 
