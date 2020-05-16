@@ -42,13 +42,13 @@
                  CompactPaneLength="50"
                  OpenPaneLength="200">
             <!--<SplitView.Pane>
-                <ListView Name="FeaturesListView" IsItemClickEnabled="True"
-                              ItemsSource="{x:Bind Features}" ItemClick="FeaturesListView_ItemClick">
+                <ListView Name="FeatureItemsListView" IsItemClickEnabled="True"
+                              ItemsSource="{x:Bind Features}" ItemClick="FeatureItemsListView_ItemClick">
                     <ListView.ItemTemplate>
-                        <DataTemplate x:DataType="model:Features">
+                        <DataTemplate x:DataType="model:FeatureItems">
                             <StackPanel Orientation="Horizontal">
-                                <Image Source="{x:Bind FeatureIconFile}" Height="35" Width="35" Margin="-8,10,0,10" />
-                                <TextBlock Text="{x:Bind Category}" FontSize="18" Margin="10,0,0,0" VerticalAlignment="Center" />
+                                <Image Source="{x:Bind IconFile}" Height="35" Width="35" Margin="-8,10,0,10" />
+                                <TextBlock Text="{x:Bind Item}" FontSize="18" Margin="10,0,0,0" VerticalAlignment="Center" />
                             </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>
