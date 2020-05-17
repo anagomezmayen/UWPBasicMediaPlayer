@@ -29,6 +29,7 @@ namespace UWPBasicMediaPlayer.Model
         public string Title { get; set; }
         public bool IsFavorite { get; set; }
         public string SongFile { get; set; }
+        public string Genre { get; set; } //needs to completed
         public System.TimeSpan Duration { get; set; }
         public BitmapImage CoverImage { get; set; } //Cover Image property
         public FeatureItems Item { get; set; }
@@ -48,8 +49,8 @@ namespace UWPBasicMediaPlayer.Model
             }
             else
             {
-                CoverImage = new BitmapImage();
-                CoverImage.UriSource = new Uri("Assets/Images/songGeneral.png");
+                //CoverImage = new BitmapImage();
+                //CoverImage.UriSource = new Uri("Assets/Images/songGeneral.png");
                 //CoverImage.UriSource("");
             }
         }
