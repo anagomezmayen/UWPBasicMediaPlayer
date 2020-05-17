@@ -11,8 +11,8 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
             <RowDefinition Height="*" />
             <RowDefinition Height="50" />
 
@@ -26,16 +26,16 @@
             FontFamily="Segoe MDL2 Assets"
             Content="&#xE0A6;" Height ="50" Width="50" Click="BackButton_Click" />
         <TextBlock Grid.Row="0" Grid.Column="0" FontSize="30" Margin ="70,0,0,0" HorizontalAlignment="Left" Width="221">
-      My Media Player
+             My Media Player
         </TextBlock>
 
-        <TextBox Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" Margin="0,10,10,10" Width="200">
+        <TextBox Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" Margin="999,10,0,10" Width="200">
 
         </TextBox>
 
         <Button Name="HamburgerButton" Grid.Row="1" Grid.Column="0"
             FontFamily="Segoe MDL2 Assets"
-            Content="&#xE700;" Height ="50" Width="50" Click="HamburgerButton_Click" VerticalAlignment="Top"/>
+            Content="&#xE700;" Height ="50" Width="50" Click="HamburgerButton_Click"/>
 
         <SplitView Grid.Row="2"  Name="MySplitView"
                  DisplayMode="CompactOverlay"
@@ -70,7 +70,7 @@
                         <GridView.ItemTemplate>
                             <DataTemplate x:DataType="model:Song">
                                 <StackPanel Orientation="Vertical">
-                                    <Image Name="MyImage" Height="112" Width="101" Source="Assets/Images/songGeneral.png"/>
+                                    <Image Name="MyImage" Height="112" Width="101" Source="Assets/Images/songGeneral.png" HorizontalAlignment="Center"/>
                                     <TextBlock Text="{x:Bind Title}" FontSize="18" Margin="10,0,0,0" VerticalAlignment="Center" />
                                 </StackPanel>
                             </DataTemplate>
@@ -82,24 +82,24 @@
         </SplitView>
 
 
-        <RelativePanel  Grid.Row="3" Grid.Column="2"  VerticalAlignment="Bottom"  HorizontalAlignment="Right">
+        <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1"  VerticalAlignment="Center"  HorizontalAlignment="Right" Height="50" Width="200">
 
             <Button Name="PreviousButton"
-      FontFamily="Segoe MDL2 Assets"
-      Content="&#xE892;" Height ="50" Width="50" Click="PreviousButton_Click" />
+                FontFamily="Segoe MDL2 Assets"
+                Content="&#xE892;" Height ="50" Width="50" Click="PreviousButton_Click" />
             <Button Name="PauseButton"
-      RelativePanel.RightOf="PreviousButton"
-      FontFamily="Segoe MDL2 Assets"
-      Content="&#xEDB4;" Height ="50" Width="50" Click="PauseButton_Click" />
+                HorizontalAlignment="Right"
+                FontFamily="Segoe MDL2 Assets"
+                Content="&#xEDB4;" Height ="50" Width="50" Click="PauseButton_Click" />
             <Button Name="PlayButton"
-      RelativePanel.RightOf="PauseButton"
-      FontFamily="Segoe MDL2 Assets"
-      Content="&#xE768;" Height ="50" Width="50" Click="PlayButton_Click" />
+                HorizontalAlignment="Right"
+                FontFamily="Segoe MDL2 Assets"
+                Content="&#xE768;" Height ="50" Width="50" Click="PlayButton_Click" />
             <Button Name="ForwardButton"
-      RelativePanel.RightOf="PlayButton"
-      FontFamily="Segoe MDL2 Assets"
-      Content="&#xE893;" Height ="50" Width="50" Click="ForwardButton_Click" />
-        </RelativePanel>
+                HorizontalAlignment="Right"
+                FontFamily="Segoe MDL2 Assets"
+                Content="&#xE893;" Height ="50" Width="50" Click="ForwardButton_Click" />
+        </StackPanel>
 
     </Grid>
 </Page>
