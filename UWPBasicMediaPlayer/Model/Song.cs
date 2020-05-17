@@ -42,9 +42,9 @@ namespace UWPBasicMediaPlayer.Model
             Title = (string)tagFile.Tag.Title;
             Duration = (System.TimeSpan)tagFile.Properties.Duration;
             SongFile = pathToFile;
-           if (tagFile.Tag.Pictures.Length >= 1)
-           {
-              CoverImage = GetCoverImage(tagFile.Tag.Pictures[0].Data.Data);
+            if (tagFile.Tag.Pictures.Length >= 1)
+            {
+                CoverImage = GetCoverImage(tagFile.Tag.Pictures[0].Data.Data);
             }
             else
             {
@@ -67,10 +67,6 @@ namespace UWPBasicMediaPlayer.Model
                 image.SetSource(ms);
                 return image;
             }
- 
         }
-       
-
-      
     }
 }
