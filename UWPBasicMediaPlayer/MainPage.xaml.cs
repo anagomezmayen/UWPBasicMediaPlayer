@@ -72,12 +72,6 @@ namespace UWPBasicMediaPlayer
         {
         }
 
-        private void SongGridView_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            var song = (Song)e.ClickedItem;
-            this.PlayAndupdatePreviousAndCurrentSong(song);
-        }
-
         private void PreviousButton_Click(object sender, RoutedEventArgs e)
         {
             this.PlayAndupdatePreviousAndCurrentSong(this.previousSong);
@@ -100,6 +94,12 @@ namespace UWPBasicMediaPlayer
             CategoryTextBlock.Text = Feature.Item.ToString();
             SongManager.GetSongsByFeature(Songs, Feature.Item);
             BackButton.Visibility = Visibility.Visible;
+        }
+
+        private void SoundGridView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            var song = (Song)e.ClickedItem;
+            this.PlayAndupdatePreviousAndCurrentSong(song);
         }
     }
 }

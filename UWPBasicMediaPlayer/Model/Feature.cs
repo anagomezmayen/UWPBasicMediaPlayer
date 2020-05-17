@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace UWPBasicMediaPlayer.Model
 {
-    class Feature
+    public class Feature
     {
         public string IconFile { get; set; }
         public FeatureItems Item  { get; set; }
