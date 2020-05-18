@@ -126,6 +126,7 @@
     <Compile Include="Model\CoverPage.cs" />
     <Compile Include="Model\Feature.cs" />
     <Compile Include="Model\PlayList.cs" />
+    <Compile Include="Model\PlayListManager.cs" />
     <Compile Include="Model\Song.cs" />
     <Compile Include="Model\SongManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -143,8 +144,12 @@
     <Content Include="Assets\Icons\Playlist.png" />
     <Content Include="Assets\Images\songGeneral.png" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
+    <Content Include="Assets\Music\01 - Nature Sounds Collection_ Sea Waves, Vol. 1 %28Ocean Coast%29.mp3" />
     <Content Include="Assets\Music\01 - One Small Voice.mp3" />
     <Content Include="Assets\Music\03 - How Great Is Our God.mp3" />
+    <Content Include="Assets\Music\13 - Say Something.mp3" />
+    <Content Include="Assets\Music\15 - Happy Sunrise %28Ambient Chillout Mix%29.mp3" />
+    <Content Include="Assets\Music\_playlists.txt" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
     <Content Include="Assets\Square150x150Logo.scale-200.png" />
     <Content Include="Assets\Square44x44Logo.scale-200.png" />
