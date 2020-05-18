@@ -126,6 +126,7 @@
     <Compile Include="Model\CoverPage.cs" />
     <Compile Include="Model\Feature.cs" />
     <Compile Include="Model\PlayList.cs" />
+    <Compile Include="Model\PlayListManager.cs" />
     <Compile Include="Model\Song.cs" />
     <Compile Include="Model\SongManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -143,8 +144,12 @@
     <Content Include="Assets\Icons\Playlist.png" />
     <Content Include="Assets\Images\songGeneral.png" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
+    <Content Include="Assets\Music\01 - Nature Sounds Collection_ Sea Waves, Vol. 1 %28Ocean Coast%29.mp3" />
     <Content Include="Assets\Music\01 - One Small Voice.mp3" />
     <Content Include="Assets\Music\03 - How Great Is Our God.mp3" />
+    <Content Include="Assets\Music\13 - Say Something.mp3" />
+    <Content Include="Assets\Music\15 - Happy Sunrise %28Ambient Chillout Mix%29.mp3" />
+    <Content Include="Assets\Music\_playlists.txt" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
     <Content Include="Assets\Square150x150Logo.scale-200.png" />
     <Content Include="Assets\Square44x44Logo.scale-200.png" />
@@ -165,7 +170,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
-      <Version>6.2.9</Version>
+      <Version>6.2.10</Version>
     </PackageReference>
     <PackageReference Include="System.Drawing.Common">
       <Version>4.7.0</Version>
@@ -174,7 +179,11 @@
       <Version>2.1.0</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Reference Include="taglib-sharp">
+      <HintPath>..\..\..\..\..\VSLibraries\taglib-sharp-2.1.0.0-windows\Libraries\taglib-sharp.dll</HintPath>
+    </Reference>
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

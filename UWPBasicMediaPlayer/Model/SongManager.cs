@@ -30,7 +30,7 @@ namespace UWPBasicMediaPlayer.Model
         public static List<Song> GetSongs()
         {
             var songs = new List<Song>();
-            string[] filePaths = Directory.GetFiles("Assets/Music");
+            string[] filePaths = Directory.GetFiles("Assets/Music", "*.mp3");//read only mp3 files
             foreach (var filepath in filePaths)
             {
                 songs.Add(new Song(filepath));
