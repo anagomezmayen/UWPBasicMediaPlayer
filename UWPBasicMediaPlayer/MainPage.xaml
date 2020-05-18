@@ -37,11 +37,11 @@
             FontFamily="Segoe MDL2 Assets"
             Content="&#xE700;" Height ="50" Width="50" Click="HamburgerButton_Click" VerticalAlignment="Top"/>
 
-        <SplitView Grid.Row="2"  Name="MySplitView"
+        <!--<SplitView Grid.Row="2"  Name="MySplitView"
                  DisplayMode="CompactOverlay"
                  CompactPaneLength="50"
                  OpenPaneLength="200">
-            <!--<SplitView.Pane>
+            <SplitView.Pane>
                 <ListView Name="FeaturesListView" IsItemClickEnabled="True"
                               ItemsSource="{x:Bind Features}" ItemClick="FeaturesListView_ItemClick">
                     <ListView.ItemTemplate>
@@ -53,7 +53,7 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-            </SplitView.Pane>-->
+            </SplitView.Pane>
             <SplitView.Content>
                 <Grid Margin="20,20,0,0" >
                     <Grid.RowDefinitions>
@@ -71,7 +71,7 @@
                         <GridView.ItemTemplate>
                             <DataTemplate x:DataType="model:Song">
                                 <StackPanel Orientation="Vertical">
-                                    <Image  x:Name="MyImage" Height="112" Width="101" Source="{x:Bind CoverImage}"/>
+                                    <Image Name="MyImage" Height="112" Width="101" Source="Assets/Images/songGeneral.png"/>
                                     <TextBlock Text="{x:Bind Title}" FontSize="18" Margin="10,0,0,0" VerticalAlignment="Center" />
                                 </StackPanel>
                             </DataTemplate>
@@ -80,7 +80,7 @@
                     </GridView>
                 </Grid>
             </SplitView.Content>
-        </SplitView>
+        </SplitView>-->
 
 
         <RelativePanel  Grid.Row="3" Grid.Column="2"  VerticalAlignment="Bottom"  HorizontalAlignment="Right">
