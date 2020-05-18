@@ -41,9 +41,7 @@ namespace UWPBasicMediaPlayer
             Features.Add(new Feature { IconFile = "Assets/Icons/MyMusic.png", Item = FeatureItems.MyMusic });
             Features.Add(new Feature { IconFile = "Assets/Icons/Playlist.png", Item = FeatureItems.Playlist });
 
-            
             BackButton.Visibility = Visibility.Collapsed;
-
         }
 
         private void HamburgerButton_Click(object sender, RoutedEventArgs e)
@@ -70,6 +68,9 @@ namespace UWPBasicMediaPlayer
 
         private void ForwardButton_Click(object sender, RoutedEventArgs e)
         {
+            TimeSpan currentPostion = MyMediaElement.Position;
+            var newPostion = currentPostion.Add(new TimeSpan(0,0, 5));
+            MyMediaElement.Position = newPostion;
         }
 
         private void PreviousButton_Click(object sender, RoutedEventArgs e)
