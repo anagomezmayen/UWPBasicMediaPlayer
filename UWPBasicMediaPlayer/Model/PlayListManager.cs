@@ -23,7 +23,7 @@ namespace UWPBasicMediaPlayer.Model
         public static List<PlayList>  GetPlayLists()
         {
             var playlists = new List<PlayList>();
-            StreamReader file = new StreamReader("Assets/Musisc/_playlists.txt");
+            StreamReader file = new StreamReader("Assets/Music/_playlists.txt");
             string line, titlePlaylist;
             List<Song> songs=new List<Song>();
 
