@@ -27,7 +27,7 @@
             Background="WhiteSmoke"
             FontFamily="Segoe MDL2 Assets"
             Content="&#xE0A6;" Height ="50" Width="50" Click="BackButton_Click" />
-        <TextBlock Grid.Row="0" Grid.Column="0" FontSize="20" Margin ="70,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center">
+        <TextBlock Grid.Row="0" Grid.Column="0" FontSize="20" Margin ="70,0,0,0" HorizontalAlignment="Left" Width="221">
              My Media Player
         </TextBlock>
 
@@ -39,9 +39,9 @@
             Background="WhiteSmoke"
             FontFamily="Segoe MDL2 Assets"
             Content="&#xE700;" Height ="50" Width="50" Click="HamburgerButton_Click"/>
-        
-        <TextBlock Name="CategoryTextBlock" Grid.Row="1" Grid.Column="0" Margin="70,0,0,0" Text="All Songs" FontSize="16" VerticalAlignment="Center"/>
-        
+
+        <TextBlock Name="ItemTextBlock" Grid.Row="1" Grid.Column="0" Margin="70,0,0,0" Text="All Songs" FontSize="16" VerticalAlignment="Center"/>
+
         <SplitView Grid.Row="2"  Name="MySplitView"
                  DisplayMode="CompactOverlay"
                  CompactPaneLength="50"
@@ -59,7 +59,7 @@
                     </ListView.ItemTemplate>
                 </ListView>
             </SplitView.Pane>
-            
+
             <SplitView.Content>
                 <Grid Margin="20,0,0,100" >
                     <Grid.RowDefinitions>
@@ -68,7 +68,7 @@
 
                     </Grid.RowDefinitions>
                     <MediaElement Name="MyMediaElement" AutoPlay="True" />
-                    
+
                     <GridView Grid.Row="1" 
                         Name="SongGridView"
                         IsItemClickEnabled="True"
@@ -97,11 +97,11 @@
                             </DataTemplate>
                         </GridView.ItemTemplate>
                     </GridView>
-                    
+
                 </Grid>
             </SplitView.Content>
         </SplitView>
-        
+
         <!-- Anna Insert list here-->
         <TextBlock Text="All Artists" Grid.Row="2" Grid.Column="2" FontSize="18" VerticalAlignment="Top" Margin="10,0,0,0"/>
         <GridView Grid.Row="2" Grid.Column="2" 
@@ -110,47 +110,42 @@
                         IsItemClickEnabled="True"
                         ItemsSource="{x:Bind Artists}"
                         ItemClick="ArtistsView_ItemClick">
-            
             <GridView.ItemTemplate>
                 <DataTemplate x:DataType="model:Artist">
-                    
                     <StackPanel Orientation="Vertical" VerticalAlignment="Top"  HorizontalAlignment="Left">
-                            <TextBlock Text="{x:Bind Name}" Margin="10,0,0,10" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                        <TextBlock Text="{x:Bind Name}" Margin="10,0,0,10" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                     </StackPanel>
                 </DataTemplate>
             </GridView.ItemTemplate>
         </GridView>
 
         <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1"  VerticalAlignment="Center"  HorizontalAlignment="Right" Height="50" Margin="0,0,0,0" >
-                <!--//Display Song Name That is Playing-->
-                <TextBlock Name="ArtistName" Text="Artist" TextAlignment="Center" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-                <TextBlock Text=" - " TextAlignment="Center" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-                <TextBlock Name="SongName" Text="Song" TextAlignment="Center" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-                <!--//Display Time Duration That is Playing-->
-                <TextBlock Name ="TimeDuration" Width ="100" Text="00.00.00" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
-
-                <Slider x:Name="timelineSlider"  Width="100" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-
-
-                <Rectangle Width ="50" HorizontalAlignment="Right" Fill="White"/>
-                <Button x:Name="PreviousButton"
+            <!--//Display Song Name That is Playing-->
+            <TextBlock Name="ArtistName" Text="Artist" TextAlignment="Center" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+            <TextBlock Text=" - " TextAlignment="Center" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+            <TextBlock Name="SongName" Text="Song" TextAlignment="Center" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+            <!--//Display Time Duration That is Playing-->
+            <TextBlock Name ="TimeDuration" Width ="100" Text="00.00.00" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            <Slider x:Name="timelineSlider"  Width="450" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <Rectangle Width ="50" HorizontalAlignment="Right" Fill="White" Margin="150,0,0,0"/>
+            <Button x:Name="PreviousButton" 
                 Background="White"
                 FontFamily="Segoe MDL2 Assets"
                 Content="&#xE892;" Height ="50" Width="50" Click="PreviousButton_Click"/>
 
-                <Button x:Name="PauseButton"
+            <Button x:Name="PauseButton"
                 Background="White"
                 HorizontalAlignment="Right"
                 FontFamily="Segoe MDL2 Assets"
                 Content="&#xEDB4;" Height ="50" Width="50" Click="PauseButton_Click" />
 
-                <Button x:Name="PlayButton"
+            <Button x:Name="PlayButton"
                 Background="White"
                 HorizontalAlignment="Right"
                 FontFamily="Segoe MDL2 Assets"
                 Content="&#xE768;" Height ="50" Width="50" Click="PlayButton_Click" />
 
-                <Button x:Name="ForwardButton"
+            <Button x:Name="ForwardButton"
                 Background="White"
                 HorizontalAlignment="Right"
                 FontFamily="Segoe MDL2 Assets"

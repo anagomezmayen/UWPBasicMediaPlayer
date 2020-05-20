@@ -58,11 +58,12 @@ namespace UWPBasicMediaPlayer
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
             SongManager.GetAllSongs(Songs);
-            CategoryTextBlock.Text = "All Songs";
+            ItemTextBlock.Text = "All Songs";
             FeaturesListView.SelectedItem = null;
             SongGridView.Visibility = Visibility.Visible;
             PlayListGridView.Visibility = Visibility.Collapsed;
             BackButton.Visibility = Visibility.Collapsed;
+            
         }
 
         private void PauseButton_Click(object sender, RoutedEventArgs e)
@@ -102,7 +103,7 @@ namespace UWPBasicMediaPlayer
             var Feature = (Feature)e.ClickedItem;
             if (Feature.Item == FeatureItems.Playlist)
             {
-                CategoryTextBlock.Text = "All my playlists";
+                ItemTextBlock.Text = "All my playlists";
                 PlayListManager.GetAllPlayLists(PlayLists, SongManager.MusicFilesPath);//added
                 BackButton.Visibility = Visibility.Visible;
                 PlayListGridView.Margin = new Thickness(20,0,0,0);
@@ -110,7 +111,7 @@ namespace UWPBasicMediaPlayer
                 PlayListGridView.Visibility = Visibility.Visible;
             }
             else { 
-                CategoryTextBlock.Text = Feature.Item.ToString();
+                ItemTextBlock.Text = Feature.Item.ToString();
                 SongManager.GetSongsByFeature(Songs, Feature.Item);
                 BackButton.Visibility = Visibility.Visible;
                 SongGridView.Visibility = Visibility.Visible;
@@ -141,7 +142,12 @@ namespace UWPBasicMediaPlayer
         {
             var artist = (Artist)e.ClickedItem;
             SongManager.GetSongsByArtist(Songs, artist.Name.Trim().ToUpper());
-            CategoryTextBlock.Text = "All Songs by "+artist.Name;
+            ItemTextBlock.Text = "All Songs by "+artist.Name;
+        }
+
+        private void Slider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
+        {
+
         }
     }
 }
