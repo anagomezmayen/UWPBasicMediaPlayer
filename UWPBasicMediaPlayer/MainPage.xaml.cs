@@ -101,6 +101,9 @@ namespace UWPBasicMediaPlayer
         {
             var song = (Song)e.ClickedItem;
             this.PlayAndupdatePreviousAndCurrentSong(song);
+            ArtistName.Text = song.Artist;
+            SongName.Text = song.Title;
+            
         }
     }
 }
