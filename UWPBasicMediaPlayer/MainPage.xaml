@@ -78,6 +78,7 @@
                                 <StackPanel Orientation="Vertical">
                                     <Image x:Name="MyImage" Height="100" Width="100" Source="{x:Bind CoverImage}" HorizontalAlignment="Center"/>
                                     <TextBlock Text="{x:Bind Title}" Width="100" TextAlignment ="Center" TextWrapping="Wrap" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Top" />
+
                                 </StackPanel>
                             </DataTemplate>
                         </GridView.ItemTemplate>
@@ -89,34 +90,33 @@
 
 
         <StackPanel x:Name="NowPlaying" Orientation="Horizontal" Grid.Row="3" Grid.Column="1"  VerticalAlignment="Center"  HorizontalAlignment="Right" Height="50" Margin="0,0,0,0" >
-                
                 <!--//Display Song Name That is Playing-->
-                <TextBlock Text="Artist-Song Name" TextAlignment="Center" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                <TextBlock Text="Artist-SongName" TextAlignment="Center" HorizontalAlignment="Right" VerticalAlignment="Center"/>
                 <!--//Display Time Duration That is Playing-->
                 <TextBlock Width ="100" Text="00.00.00" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
 
                 <Slider x:Name="timelineSlider"  Width="450" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
-            
-            <Rectangle Width ="50" HorizontalAlignment="Right" Fill="White"/>
-            <Button x:Name="PreviousButton"
+
+                <Rectangle Width ="50" HorizontalAlignment="Right" Fill="White"/>
+                <Button x:Name="PreviousButton"
                 Background="White"
                 FontFamily="Segoe MDL2 Assets"
                 Content="&#xE892;" Height ="50" Width="50" Click="PreviousButton_Click"/>
 
-            <Button x:Name="PauseButton"
+                <Button x:Name="PauseButton"
                 Background="White"
                 HorizontalAlignment="Right"
                 FontFamily="Segoe MDL2 Assets"
                 Content="&#xEDB4;" Height ="50" Width="50" Click="PauseButton_Click" />
 
-            <Button x:Name="PlayButton"
+                <Button x:Name="PlayButton"
                 Background="White"
                 HorizontalAlignment="Right"
                 FontFamily="Segoe MDL2 Assets"
                 Content="&#xE768;" Height ="50" Width="50" Click="PlayButton_Click" />
 
-            <Button x:Name="ForwardButton"
+                <Button x:Name="ForwardButton"
                 Background="White"
                 HorizontalAlignment="Right"
                 FontFamily="Segoe MDL2 Assets"
