@@ -22,42 +22,39 @@ namespace UWPBasicMediaPlayer.Model
             allPlayLists.ForEach(pl => playlists.Add(pl));
         }
 
-      
-        public static List<PlayList>  GetPlayLists(string musicFilesPath)
+
+        public static List<PlayList> GetPlayLists(string musicFilesPath)
         {
             var playlists = new List<PlayList>();
 
-            string[] linesFile = File.ReadAllLines(musicFilesPath+"/_playlists.txt");
+            string[] linesFile = File.ReadAllLines(musicFilesPath + "/_playlists.txt");
             string titlePlaylist;
             int lineNumber = 1;
             lineNumber--;
 
-            StreamReader file = new StreamReader("Assets/Music/_playlists.txt");
             string line;
 
-            List<Song> songs=new List<Song>();
-            if (linesFile.Length > 0) { //there is a playlist 
+            List<Song> songs = null;
+            if (linesFile.Length > 0)
+            { //there is a playlist 
                 while (lineNumber < linesFile.Length)
                 {
                     if (linesFile[lineNumber].StartsWith("MP"))// a new playlist
                     {
                         titlePlaylist = linesFile[lineNumber].Substring(3);
-                        if (songs.Count == 0)
+                        songs = new List<Song>();
+                        playlists.Add(new PlayList
                         {
-                            playlists.Add(new PlayList
-                            {
-                                Title = titlePlaylist,
-                                Songs = songs
-                            });
-                        }
-                        songs.Clear();
-
+                            Title = titlePlaylist,
+                            Songs = songs
+                        });
                     }
                     lineNumber++;
-                } }
+                }
+            }
             else
             {
-                songs.Add(new Song(linesFile[lineNumber].Trim()));
+                songs.Add(SongManager.GetSongByTitle(linesFile[lineNumber].Trim()));
             }
             return playlists;
         }

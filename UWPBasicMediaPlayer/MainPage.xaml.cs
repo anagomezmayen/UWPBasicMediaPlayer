@@ -35,12 +35,9 @@ namespace UWPBasicMediaPlayer
         public MainPage()
         {
             this.InitializeComponent();
-            MusicFilesPath = "Assets/Music";
             Songs = new ObservableCollection<Song>();
-            SongManager.GetAllSongs(Songs, MusicFilesPath); 
-            
-            
-
+            SongManager.GetAllSongs(Songs); 
+           
             Features = new List<Feature>();
             Features.Add(new Feature { IconFile = "Assets/Icons/Albums.png", Item = FeatureItems.Albums  });
             Features.Add(new Feature { IconFile = "Assets/Icons/Artists.png", Item = FeatureItems.Artists });
@@ -58,7 +55,7 @@ namespace UWPBasicMediaPlayer
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            SongManager.GetAllSongs(Songs, MusicFilesPath);
+            SongManager.GetAllSongs(Songs);
             CategoryTextBlock.Text = "All Songs";
             FeaturesListView.SelectedItem = null;
             BackButton.Visibility = Visibility.Collapsed;
@@ -107,7 +104,7 @@ namespace UWPBasicMediaPlayer
             }
             else { 
                 CategoryTextBlock.Text = Feature.Item.ToString();
-                SongManager.GetSongsByFeature(Songs, Feature.Item, MusicFilesPath);
+                SongManager.GetSongsByFeature(Songs, Feature.Item);
                 BackButton.Visibility = Visibility.Visible;
             }
         }
@@ -118,7 +115,6 @@ namespace UWPBasicMediaPlayer
             this.PlayAndupdatePreviousAndCurrentSong(song);
             ArtistName.Text = song.Artist;
             SongName.Text = song.Title;
-            
         }
     }
 }
