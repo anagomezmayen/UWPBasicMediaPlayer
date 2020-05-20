@@ -123,7 +123,7 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\Album.cs" />
-    <Compile Include="Model\CustomMediaTransportControls.cs" />
+    <Compile Include="Model\Artist.cs" />
     <Compile Include="Model\CoverPage.cs" />
     <Compile Include="Model\Feature.cs" />
     <Compile Include="Model\PlayList.cs" />
@@ -147,7 +147,6 @@
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\Music\01 - One Small Voice.mp3" />
     <Content Include="Assets\Music\03 - How Great Is Our God.mp3" />
-    <Content Include="Assets\Music\KS-ARIHANT NAAM SATYA HAI.mp3" />
     <Content Include="Assets\Music\_playlists.txt" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
     <Content Include="Assets\Square150x150Logo.scale-200.png" />

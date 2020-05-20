@@ -25,8 +25,9 @@ namespace UWPBasicMediaPlayer
     public sealed partial class MainPage : Page
     {
         private ObservableCollection<Song> Songs;
+        private ObservableCollection<Artist> Artists;
         private ObservableCollection<PlayList> PlayLists;//added
-        private string MusicFilesPath;//added
+        private string MusicFilesPath;
         private List<Feature> Features;
         private Song previousSong;
         private Song currentSong;
@@ -37,10 +38,10 @@ namespace UWPBasicMediaPlayer
             this.InitializeComponent();
             MusicFilesPath = "Assets/Music";
             Songs = new ObservableCollection<Song>();
-            SongManager.GetAllSongs(Songs, MusicFilesPath); 
-            
-            
-
+            Artists = new ObservableCollection<Artist>();
+            SongManager.GetAllSongs(Songs, MusicFilesPath);
+            SongManager.GetAllArtist(Artists, MusicFilesPath);//Artists
+      
             Features = new List<Feature>();
             Features.Add(new Feature { IconFile = "Assets/Icons/Albums.png", Item = FeatureItems.Albums  });
             Features.Add(new Feature { IconFile = "Assets/Icons/Artists.png", Item = FeatureItems.Artists });
@@ -119,6 +120,13 @@ namespace UWPBasicMediaPlayer
             ArtistName.Text = song.Artist;
             SongName.Text = song.Title;
             
+        }
+
+        private void ArtistsView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            var artist = (Artist)e.ClickedItem;
+            SongManager.GetSongsByArtist(Songs, MusicFilesPath, artist.Name.Trim().ToUpper());
+            CategoryTextBlock.Text = "All Songs by "+artist.Name;
         }
     }
 }
