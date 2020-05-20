@@ -103,24 +103,19 @@
         </SplitView>
         
         <!-- Anna Insert list here-->
-        <TextBlock Text="Artist" Grid.Row="2" Grid.Column="2" FontSize="18" VerticalAlignment="Top" Margin="10,0,0,0"/>
+        <TextBlock Text="All Artists" Grid.Row="2" Grid.Column="2" FontSize="18" VerticalAlignment="Top" Margin="10,0,0,0"/>
         <GridView Grid.Row="2" Grid.Column="2" 
                   Margin="10,25,0,0"
-                        Name="PlaylistView"
+                        Name="ArtistsView"
                         IsItemClickEnabled="True"
-                        ItemsSource="{x:Bind Songs}"
-                        ItemClick="SongGridView_ItemClick">
+                        ItemsSource="{x:Bind Artists}"
+                        ItemClick="ArtistsView_ItemClick">
             
             <GridView.ItemTemplate>
-                <DataTemplate x:DataType="model:Song">
+                <DataTemplate x:DataType="model:Artist">
                     
                     <StackPanel Orientation="Vertical" VerticalAlignment="Top"  HorizontalAlignment="Left">
-                        
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Height="15">
-                            <TextBlock Text="{x:Bind Artist}" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                            <TextBlock Text=" - " HorizontalAlignment="Right" VerticalAlignment="Center"/>
-                            <TextBlock Text="{x:Bind Title}" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                        </StackPanel>
+                            <TextBlock Text="{x:Bind Name}" Margin="10,0,0,10" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Center" />
                     </StackPanel>
                 </DataTemplate>
             </GridView.ItemTemplate>

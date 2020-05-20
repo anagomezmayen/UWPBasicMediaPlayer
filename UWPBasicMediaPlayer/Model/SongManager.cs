@@ -10,29 +10,36 @@ namespace UWPBasicMediaPlayer.Model
 {
     public static class SongManager
     {
-        public static string MusicFilesPath = "Assets/Music";
-
-        public static void GetAllSongs(System.Collections.ObjectModel.ObservableCollection<Song> songs)
+        public static void GetAllSongs(System.Collections.ObjectModel.ObservableCollection<Song> songs, string musicFilesPath)
         {
-            var allSongs = GetSongs();
+            var allSongs = GetSongs(musicFilesPath);
             songs.Clear();
             allSongs.ForEach(song => songs.Add(song));
         }
 
-        public static void GetSongsByFeature(ObservableCollection<Song> songs, FeatureItems item)
+        public static void GetSongsByFeature(ObservableCollection<Song> songs, FeatureItems item, string musicFilesPath)
         {
-            var allSongs = GetSongs();
+            var allSongs = GetSongs(musicFilesPath);
             var filteredSongs = allSongs.Where(song => song.Item == item).ToList();
             songs.Clear();
             filteredSongs.ForEach(song => songs.Add(song)); //lambda expression
         }
+
+        public static void GetSongsByArtist(ObservableCollection<Song> songs, string musicFilesPath, string artist)
+        {
+            var allSongs = GetSongs(musicFilesPath);
+            var filteredSongs = allSongs.Where(song => song.Artist.Trim().ToUpper().Equals(artist)).ToList();
+            songs.Clear();
+            filteredSongs.ForEach(song => songs.Add(song));
+        }
+
         /**
          * This method read the name files in the carpet music and make the list of Songs
          */
-        public static List<Song> GetSongs()
+        public static List<Song> GetSongs(string musicFilesPath)
         {
             var songs = new List<Song>();
-            string[] filePaths = Directory.GetFiles(MusicFilesPath, "*.mp3");//read only mp3 files
+            string[] filePaths = Directory.GetFiles(musicFilesPath, "*.mp3");//read only mp3 files
             foreach (var filepath in filePaths)
             {
                 songs.Add(new Song(filepath));
@@ -40,10 +47,16 @@ namespace UWPBasicMediaPlayer.Model
             return songs;
         }
 
-        public static Song GetSongByTitle(string title)
+        public static void GetAllArtist(ObservableCollection<Artist> artists, string musicFilesPath)
         {
-            var allSongs = GetSongs();
-            return allSongs.Where(song => song.Title == title).SingleOrDefault();
+            var allSongs = GetSongs(musicFilesPath);
+            artists.Clear();
+            foreach (var s in allSongs)
+            {
+                artists.Add(new Artist { Name = s.Artist }); // We have to check that name is unique
+            }
+            
         }
+
     }
 }

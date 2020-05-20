@@ -39,6 +39,11 @@ namespace UWPBasicMediaPlayer.Model
         {
             TagLib.File tagFile = TagLib.File.Create(pathToFile);
             Artist = (string)tagFile.Tag.FirstAlbumArtist;
+            if(Artist==null || Artist.Trim().Equals(""))
+            {
+                Artist = "Unknown";
+            }
+
             Album = (string)tagFile.Tag.Album;
             Title = (string)tagFile.Tag.Title;
             Genre = (string)tagFile.Tag.FirstGenre;
