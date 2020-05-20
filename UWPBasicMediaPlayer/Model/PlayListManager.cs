@@ -33,7 +33,7 @@ namespace UWPBasicMediaPlayer.Model
             lineNumber--;
 
             StreamReader file = new StreamReader("Assets/Music/_playlists.txt");
-            string line, titlePlaylist;
+            string line;
 
             List<Song> songs=new List<Song>();
             if (linesFile.Length > 0) { //there is a playlist 
