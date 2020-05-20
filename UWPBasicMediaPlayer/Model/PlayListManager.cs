@@ -10,46 +10,55 @@ using Windows.UI.Xaml.Shapes;
 
 namespace UWPBasicMediaPlayer.Model
 {
+
+    // Play List
     public static class PlayListManager
     {
-        public static void GetAllPlayLists(ObservableCollection<PlayList> playlists)
+
+        public static void GetAllPlayLists(ObservableCollection<PlayList> playlists, string musicFilesPath)
         {
-            var allPlayLists = GetPlayLists();
+            var allPlayLists = GetPlayLists(musicFilesPath);
             allPlayLists.Clear();
             allPlayLists.ForEach(pl => playlists.Add(pl));
         }
 
       
-        public static List<PlayList>  GetPlayLists()
+        public static List<PlayList>  GetPlayLists(string musicFilesPath)
         {
             var playlists = new List<PlayList>();
+
+            string[] linesFile = File.ReadAllLines(musicFilesPath+"/_playlists.txt");
+            string titlePlaylist;
+            int lineNumber = 1;
+            lineNumber--;
+
             StreamReader file = new StreamReader("Assets/Music/_playlists.txt");
             string line, titlePlaylist;
+
             List<Song> songs=new List<Song>();
-
-            while ((line = file.ReadLine()) != null)
-            {
-                if (line.StartsWith("MP"))// a new playlist
+            if (linesFile.Length > 0) { //there is a playlist 
+                while (lineNumber < linesFile.Length)
                 {
-                    titlePlaylist = line.Substring(3);
-                    if (songs.Count == 0)
+                    if (linesFile[lineNumber].StartsWith("MP"))// a new playlist
                     {
-                        playlists.Add(new PlayList
+                        titlePlaylist = linesFile[lineNumber].Substring(3);
+                        if (songs.Count == 0)
                         {
-                            Title = titlePlaylist,
-                            Songs = songs
-                        });
+                            playlists.Add(new PlayList
+                            {
+                                Title = titlePlaylist,
+                                Songs = songs
+                            });
+                        }
+                        songs.Clear();
+
                     }
-                    songs.Clear();
-
-                }
-                else
-                {
-                    songs.Add(new Song(line.Trim()));
-                }
-                
+                    lineNumber++;
+                } }
+            else
+            {
+                songs.Add(new Song(linesFile[lineNumber].Trim()));
             }
-
             return playlists;
         }
     }

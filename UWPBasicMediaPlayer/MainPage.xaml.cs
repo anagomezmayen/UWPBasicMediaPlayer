@@ -25,15 +25,22 @@ namespace UWPBasicMediaPlayer
     public sealed partial class MainPage : Page
     {
         private ObservableCollection<Song> Songs;
+        private ObservableCollection<PlayList> PlayLists;//added
+        private string MusicFilesPath;//added
         private List<Feature> Features;
         private Song previousSong;
         private Song currentSong;
 
+
         public MainPage()
         {
             this.InitializeComponent();
+            MusicFilesPath = "Assets/Music";
             Songs = new ObservableCollection<Song>();
-            SongManager.GetAllSongs(Songs);
+            SongManager.GetAllSongs(Songs, MusicFilesPath); 
+            
+            
+
             Features = new List<Feature>();
             Features.Add(new Feature { IconFile = "Assets/Icons/Albums.png", Item = FeatureItems.Albums  });
             Features.Add(new Feature { IconFile = "Assets/Icons/Artists.png", Item = FeatureItems.Artists });
@@ -51,7 +58,7 @@ namespace UWPBasicMediaPlayer
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            SongManager.GetAllSongs(Songs);
+            SongManager.GetAllSongs(Songs, MusicFilesPath);
             CategoryTextBlock.Text = "All Songs";
             FeaturesListView.SelectedItem = null;
             BackButton.Visibility = Visibility.Collapsed;
@@ -92,9 +99,17 @@ namespace UWPBasicMediaPlayer
         private void FeaturesListView_ItemClick(object sender, ItemClickEventArgs e)
         {
             var Feature = (Feature)e.ClickedItem;
-            CategoryTextBlock.Text = Feature.Item.ToString();
-            SongManager.GetSongsByFeature(Songs, Feature.Item);
-            BackButton.Visibility = Visibility.Visible;
+            if (Feature.Item.ToString().Equals("Playlist"))
+            {
+                CategoryTextBlock.Text = "All my playlists";
+                PlayListManager.GetAllPlayLists(PlayLists, MusicFilesPath);//added
+                BackButton.Visibility = Visibility.Visible;
+            }
+            else { 
+                CategoryTextBlock.Text = Feature.Item.ToString();
+                SongManager.GetSongsByFeature(Songs, Feature.Item, MusicFilesPath);
+                BackButton.Visibility = Visibility.Visible;
+            }
         }
 
         private void SoundGridView_ItemClick(object sender, ItemClickEventArgs e)

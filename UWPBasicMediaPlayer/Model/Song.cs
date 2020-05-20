@@ -29,9 +29,9 @@ namespace UWPBasicMediaPlayer.Model
         public string Title { get; set; }
         public bool IsFavorite { get; set; }
         public string SongFile { get; set; }
-        public string Genre { get; set; } //needs to completed
+        public string Genre { get; set; } 
         public System.TimeSpan Duration { get; set; }
-        public BitmapImage CoverImage { get; set; } //Cover Image property
+        public BitmapImage CoverImage { get; set; }
         public FeatureItems Item { get; set; }
 
        
@@ -41,6 +41,11 @@ namespace UWPBasicMediaPlayer.Model
             Artist = (string)tagFile.Tag.FirstAlbumArtist;
             Album = (string)tagFile.Tag.Album;
             Title = (string)tagFile.Tag.Title;
+            Genre = (string)tagFile.Tag.FirstGenre;
+            if(Genre.ToUpper().Equals("GENRE") || Genre.Trim().Equals(""))
+            {
+                Genre = "Unknown";
+            }
             Duration = (System.TimeSpan)tagFile.Properties.Duration;
             SongFile = pathToFile;
             if (tagFile.Tag.Pictures.Length >= 1)
@@ -49,9 +54,8 @@ namespace UWPBasicMediaPlayer.Model
             }
             else
             {
-                //CoverImage = new BitmapImage();
-                //CoverImage.UriSource = new Uri("Assets/Images/songGeneral.png");
-                //CoverImage.UriSource("");
+                Uri uri= new Uri("ms-appx:///Assets/Images/songGeneral.png");
+                CoverImage = new BitmapImage(uri);
             }
         }
         private BitmapImage GetCoverImage(byte[] pic)
