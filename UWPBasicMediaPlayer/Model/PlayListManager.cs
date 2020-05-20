@@ -26,10 +26,15 @@ namespace UWPBasicMediaPlayer.Model
         public static List<PlayList>  GetPlayLists(string musicFilesPath)
         {
             var playlists = new List<PlayList>();
+
             string[] linesFile = File.ReadAllLines(musicFilesPath+"/_playlists.txt");
             string titlePlaylist;
             int lineNumber = 1;
             lineNumber--;
+
+            StreamReader file = new StreamReader("Assets/Music/_playlists.txt");
+            string line, titlePlaylist;
+
             List<Song> songs=new List<Song>();
             if (linesFile.Length > 0) { //there is a playlist 
                 while (lineNumber < linesFile.Length)
