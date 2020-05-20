@@ -19,7 +19,8 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
 
         <Button Name="BackButton" Grid.Column="0"
@@ -60,7 +61,7 @@
             </SplitView.Pane>
             
             <SplitView.Content>
-                <Grid Margin="20,0,0,50" >
+                <Grid Margin="20,0,0,100" >
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
@@ -87,15 +88,40 @@
                 </Grid>
             </SplitView.Content>
         </SplitView>
+        
+        <!-- Anna Insert list here-->
+        <TextBlock Text="Artist" Grid.Row="2" Grid.Column="2" FontSize="18" VerticalAlignment="Top" Margin="10,0,0,0"/>
+        <GridView Grid.Row="2" Grid.Column="2" 
+                  Margin="10,25,0,0"
+                        Name="PlaylistView"
+                        IsItemClickEnabled="True"
+                        ItemsSource="{x:Bind Songs}"
+                        ItemClick="SoundGridView_ItemClick">
+            
+            <GridView.ItemTemplate>
+                <DataTemplate x:DataType="model:Song">
+                    
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Top"  HorizontalAlignment="Left">
+                        
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Height="15">
+                            <TextBlock Text="{x:Bind Artist}" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                            <TextBlock Text=" - " HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                            <TextBlock Text="{x:Bind Title}" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </StackPanel>
+                </DataTemplate>
+            </GridView.ItemTemplate>
+        </GridView>
 
-
-        <StackPanel x:Name="NowPlaying" Orientation="Horizontal" Grid.Row="3" Grid.Column="1"  VerticalAlignment="Center"  HorizontalAlignment="Right" Height="50" Margin="0,0,0,0" >
+        <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1"  VerticalAlignment="Center"  HorizontalAlignment="Right" Height="50" Margin="0,0,0,0" >
                 <!--//Display Song Name That is Playing-->
-                <TextBlock Text="Artist-SongName" TextAlignment="Center" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                <TextBlock Name="ArtistName" Text="Artist" TextAlignment="Center" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                <TextBlock Text=" - " TextAlignment="Center" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                <TextBlock Name="SongName" Text="Song" TextAlignment="Center" HorizontalAlignment="Right" VerticalAlignment="Center"/>
                 <!--//Display Time Duration That is Playing-->
-                <TextBlock Width ="100" Text="00.00.00" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <TextBlock Name ="TimeDuration" Width ="100" Text="00.00.00" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
 
-                <Slider x:Name="timelineSlider"  Width="450" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <Slider x:Name="timelineSlider"  Width="100" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
 
                 <Rectangle Width ="50" HorizontalAlignment="Right" Fill="White"/>
