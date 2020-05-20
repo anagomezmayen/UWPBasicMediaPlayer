@@ -31,15 +31,13 @@ namespace UWPBasicMediaPlayer
         private Song previousSong;
         private Song currentSong;
 
-
         public MainPage()
         {
             this.InitializeComponent();
-            MusicFilesPath = "Assets/Music";
             Songs = new ObservableCollection<Song>();
             Artists = new ObservableCollection<Artist>();
-            SongManager.GetAllSongs(Songs, MusicFilesPath);
-            SongManager.GetAllArtist(Artists, MusicFilesPath);//Artists
+            SongManager.GetAllSongs(Songs);
+            SongManager.GetAllArtist(Artists);//Artists
       
             Features = new List<Feature>();
             Features.Add(new Feature { IconFile = "Assets/Icons/Albums.png", Item = FeatureItems.Albums  });
@@ -59,7 +57,7 @@ namespace UWPBasicMediaPlayer
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            SongManager.GetAllSongs(Songs, MusicFilesPath);
+            SongManager.GetAllSongs(Songs);
             CategoryTextBlock.Text = "All Songs";
             FeaturesListView.SelectedItem = null;
             SongGridView.Visibility = Visibility.Visible;
@@ -113,7 +111,7 @@ namespace UWPBasicMediaPlayer
             }
             else { 
                 CategoryTextBlock.Text = Feature.Item.ToString();
-                SongManager.GetSongsByFeature(Songs, Feature.Item, MusicFilesPath);
+                SongManager.GetSongsByFeature(Songs, Feature.Item);
                 BackButton.Visibility = Visibility.Visible;
                 SongGridView.Visibility = Visibility.Visible;
                 PlayListGridView.Visibility = Visibility.Collapsed;
@@ -142,7 +140,7 @@ namespace UWPBasicMediaPlayer
         private void ArtistsView_ItemClick(object sender, ItemClickEventArgs e)
         {
             var artist = (Artist)e.ClickedItem;
-            SongManager.GetSongsByArtist(Songs, MusicFilesPath, artist.Name.Trim().ToUpper());
+            SongManager.GetSongsByArtist(Songs, artist.Name.Trim().ToUpper());
             CategoryTextBlock.Text = "All Songs by "+artist.Name;
         }
     }
