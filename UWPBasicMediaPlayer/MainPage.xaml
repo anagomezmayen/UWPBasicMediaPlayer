@@ -60,7 +60,7 @@
             </SplitView.Pane>
             
             <SplitView.Content>
-                <Grid Margin="20,0,0,0" >
+                <Grid Margin="20,0,0,50" >
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
