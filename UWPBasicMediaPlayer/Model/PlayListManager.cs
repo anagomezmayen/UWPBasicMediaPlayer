@@ -17,8 +17,9 @@ namespace UWPBasicMediaPlayer.Model
 
         public static void GetAllPlayLists(ObservableCollection<PlayList> playlists, string musicFilesPath)
         {
+            playlists.Clear();
+
             var allPlayLists = GetPlayLists(musicFilesPath);
-            allPlayLists.Clear();
             allPlayLists.ForEach(pl => playlists.Add(pl));
         }
 
@@ -49,12 +50,13 @@ namespace UWPBasicMediaPlayer.Model
                             Songs = songs
                         });
                     }
+                    else
+                    {
+                        songs.Add(SongManager.GetSongByTitle(linesFile[lineNumber].Trim()));
+                    }
+
                     lineNumber++;
                 }
-            }
-            else
-            {
-                songs.Add(SongManager.GetSongByTitle(linesFile[lineNumber].Trim()));
             }
             return playlists;
         }

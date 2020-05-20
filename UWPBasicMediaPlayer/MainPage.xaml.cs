@@ -25,8 +25,7 @@ namespace UWPBasicMediaPlayer
     public sealed partial class MainPage : Page
     {
         private ObservableCollection<Song> Songs;
-        private ObservableCollection<PlayList> PlayLists;//added
-        private string MusicFilesPath;//added
+        private ObservableCollection<PlayList> PlayLists = new ObservableCollection<PlayList>();
         private List<Feature> Features;
         private Song previousSong;
         private Song currentSong;
@@ -46,6 +45,7 @@ namespace UWPBasicMediaPlayer
             Features.Add(new Feature { IconFile = "Assets/Icons/Playlist.png", Item = FeatureItems.Playlist });
 
             BackButton.Visibility = Visibility.Collapsed;
+            PlayListGridView.Visibility = Visibility.Collapsed;
         }
 
         private void HamburgerButton_Click(object sender, RoutedEventArgs e)
@@ -58,6 +58,8 @@ namespace UWPBasicMediaPlayer
             SongManager.GetAllSongs(Songs);
             CategoryTextBlock.Text = "All Songs";
             FeaturesListView.SelectedItem = null;
+            SongGridView.Visibility = Visibility.Visible;
+            PlayListGridView.Visibility = Visibility.Collapsed;
             BackButton.Visibility = Visibility.Collapsed;
         }
 
@@ -96,20 +98,35 @@ namespace UWPBasicMediaPlayer
         private void FeaturesListView_ItemClick(object sender, ItemClickEventArgs e)
         {
             var Feature = (Feature)e.ClickedItem;
-            if (Feature.Item.ToString().Equals("Playlist"))
+            if (Feature.Item == FeatureItems.Playlist)
             {
                 CategoryTextBlock.Text = "All my playlists";
-                PlayListManager.GetAllPlayLists(PlayLists, MusicFilesPath);//added
+                PlayListManager.GetAllPlayLists(PlayLists, SongManager.MusicFilesPath);//added
                 BackButton.Visibility = Visibility.Visible;
+                PlayListGridView.Margin = new Thickness(20,0,0,0);
+                SongGridView.Visibility = Visibility.Collapsed;
+                PlayListGridView.Visibility = Visibility.Visible;
             }
             else { 
                 CategoryTextBlock.Text = Feature.Item.ToString();
                 SongManager.GetSongsByFeature(Songs, Feature.Item);
                 BackButton.Visibility = Visibility.Visible;
+                SongGridView.Visibility = Visibility.Visible;
+                PlayListGridView.Visibility = Visibility.Collapsed;
             }
         }
 
-        private void SoundGridView_ItemClick(object sender, ItemClickEventArgs e)
+        private void PlayListGridView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            var selectedPlaylist = (PlayList)e.ClickedItem;
+            this.Songs.Clear();
+            selectedPlaylist.Songs.ForEach(song => this.Songs.Add(song));
+            PlayListGridView.Margin = new Thickness(20, 150, 0, 0);
+            SongGridView.Visibility = Visibility.Visible;
+            PlayListGridView.Visibility = Visibility.Visible;
+        }
+
+        private void SongGridView_ItemClick(object sender, ItemClickEventArgs e)
         {
             var song = (Song)e.ClickedItem;
             this.PlayAndupdatePreviousAndCurrentSong(song);

@@ -70,21 +70,34 @@
                     <MediaElement Name="MyMediaElement" AutoPlay="True" />
                     
                     <GridView Grid.Row="1" 
-                        Name="SoundGridView"
+                        Name="SongGridView"
                         IsItemClickEnabled="True"
                         ItemsSource="{x:Bind Songs}"
-                        ItemClick="SoundGridView_ItemClick">
+                        ItemClick="SongGridView_ItemClick" Margin="20,0,0,0">
                         <GridView.ItemTemplate>
                             <DataTemplate x:DataType="model:Song">
                                 <StackPanel Orientation="Vertical">
                                     <Image x:Name="MyImage" Height="100" Width="100" Source="{x:Bind CoverImage}" HorizontalAlignment="Center"/>
                                     <TextBlock Text="{x:Bind Title}" Width="100" TextAlignment ="Center" TextWrapping="Wrap" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Top" />
-
                                 </StackPanel>
                             </DataTemplate>
                         </GridView.ItemTemplate>
-
                     </GridView>
+
+                    <GridView Grid.Row="2" 
+                        Name="PlayListGridView"
+                        IsItemClickEnabled="True"
+                        ItemsSource="{x:Bind PlayLists}"
+                        ItemClick="PlayListGridView_ItemClick" Margin="20,150,0,0">
+                        <GridView.ItemTemplate>
+                            <DataTemplate x:DataType="model:PlayList">
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Text="{x:Bind Title}" Width="100" TextAlignment ="Center" TextWrapping="Wrap" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Top" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </GridView.ItemTemplate>
+                    </GridView>
+                    
                 </Grid>
             </SplitView.Content>
         </SplitView>
@@ -96,7 +109,7 @@
                         Name="PlaylistView"
                         IsItemClickEnabled="True"
                         ItemsSource="{x:Bind Songs}"
-                        ItemClick="SoundGridView_ItemClick">
+                        ItemClick="SongGridView_ItemClick">
             
             <GridView.ItemTemplate>
                 <DataTemplate x:DataType="model:Song">
