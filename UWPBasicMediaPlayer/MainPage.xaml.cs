@@ -1,19 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using UWPBasicMediaPlayer.Model;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -38,9 +29,9 @@ namespace UWPBasicMediaPlayer
             Artists = new ObservableCollection<Artist>();
             SongManager.GetAllSongs(Songs);
             SongManager.GetAllArtist(Artists);//Artists
-      
+
             Features = new List<Feature>();
-            Features.Add(new Feature { IconFile = "Assets/Icons/Albums.png", Item = FeatureItems.Albums  });
+            Features.Add(new Feature { IconFile = "Assets/Icons/Albums.png", Item = FeatureItems.Albums });
             Features.Add(new Feature { IconFile = "Assets/Icons/Artists.png", Item = FeatureItems.Artists });
             Features.Add(new Feature { IconFile = "Assets/Icons/Favourite.png", Item = FeatureItems.Favourite });
             Features.Add(new Feature { IconFile = "Assets/Icons/MyMusic.png", Item = FeatureItems.MyMusic });
@@ -63,7 +54,6 @@ namespace UWPBasicMediaPlayer
             SongGridView.Visibility = Visibility.Visible;
             PlayListGridView.Visibility = Visibility.Collapsed;
             BackButton.Visibility = Visibility.Collapsed;
-            
         }
 
         private void PauseButton_Click(object sender, RoutedEventArgs e)
@@ -78,7 +68,7 @@ namespace UWPBasicMediaPlayer
         private void ForwardButton_Click(object sender, RoutedEventArgs e)
         {
             TimeSpan currentPostion = MyMediaElement.Position;
-            var newPostion = currentPostion.Add(new TimeSpan(0,0, 5));
+            var newPostion = currentPostion.Add(new TimeSpan(0, 0, 5));
             MyMediaElement.Position = newPostion;
         }
 
@@ -106,11 +96,13 @@ namespace UWPBasicMediaPlayer
                 ItemTextBlock.Text = "All my playlists";
                 PlayListManager.GetAllPlayLists(PlayLists, SongManager.MusicFilesPath);//added
                 BackButton.Visibility = Visibility.Visible;
-                PlayListGridView.Margin = new Thickness(20,0,0,0);
+                PlayListGridView.Margin = new Thickness(20, 0, 0, 0);
                 SongGridView.Visibility = Visibility.Collapsed;
                 PlayListGridView.Visibility = Visibility.Visible;
+                ArtistsView.Visibility = Visibility.Collapsed;
             }
-            else { 
+            else
+            {
                 ItemTextBlock.Text = Feature.Item.ToString();
                 SongManager.GetSongsByFeature(Songs, Feature.Item);
                 BackButton.Visibility = Visibility.Visible;
@@ -127,6 +119,7 @@ namespace UWPBasicMediaPlayer
             PlayListGridView.Margin = new Thickness(20, 150, 0, 0);
             SongGridView.Visibility = Visibility.Visible;
             PlayListGridView.Visibility = Visibility.Visible;
+            ArtistsView.Visibility = Visibility.Visible;
         }
 
         private void SongGridView_ItemClick(object sender, ItemClickEventArgs e)
@@ -135,19 +128,35 @@ namespace UWPBasicMediaPlayer
             this.PlayAndupdatePreviousAndCurrentSong(song);
             ArtistName.Text = song.Artist;
             SongName.Text = song.Title;
-            
+            ArtistsView.Visibility = Visibility.Visible;
+            timelineSlider.Visibility = Visibility.Visible;
         }
 
         private void ArtistsView_ItemClick(object sender, ItemClickEventArgs e)
         {
             var artist = (Artist)e.ClickedItem;
             SongManager.GetSongsByArtist(Songs, artist.Name.Trim().ToUpper());
-            ItemTextBlock.Text = "All Songs by "+artist.Name;
+            ItemTextBlock.Text = "All Songs by " + artist.Name;
+            PlayListGridView.Visibility = Visibility.Collapsed;
+            ArtistsView.Visibility = Visibility.Visible;
+            SongGridView.Visibility = Visibility.Visible;
         }
 
-        private void Slider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
+        private void SeekToMediaPosition(object sender, RangeBaseValueChangedEventArgs e)
         {
+            var sliderValue = (int)timelineSlider.Value;
+            var ts = new TimeSpan(0, 0, 0, 0, sliderValue);
+            MyMediaElement.Position = ts;
+        }
 
+        private void MyMediaElement_MediaOpened(object sender, RoutedEventArgs e)
+        {
+            timelineSlider.Maximum = MyMediaElement.NaturalDuration.TimeSpan.Seconds;
+        }
+
+        private void MyMediaElement_MediaEnded(object sender, RoutedEventArgs e)
+        {
+            MyMediaElement.Stop();
         }
     }
 }

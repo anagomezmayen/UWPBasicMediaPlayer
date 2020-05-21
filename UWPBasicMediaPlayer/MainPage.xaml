@@ -31,7 +31,7 @@
              My Media Player
         </TextBlock>
 
-        <TextBox Grid.Row="0" Grid.Column="1" Text="Search" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="0,10,10,0" Width="200"/>
+        <TextBox Grid.Row="0" Grid.Column="2" Text="Search" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="0,10,10,0" Width="200"/>
 
 
 
@@ -67,7 +67,7 @@
                         <RowDefinition Height="*" />
 
                     </Grid.RowDefinitions>
-                    <MediaElement Name="MyMediaElement" AutoPlay="True" />
+                    <MediaElement Name="MyMediaElement" AutoPlay="True" MediaOpened="MyMediaElement_MediaOpened" MediaEnded="MyMediaElement_MediaEnded"/>
 
                     <GridView Grid.Row="1" 
                         Name="SongGridView"
@@ -119,15 +119,16 @@
             </GridView.ItemTemplate>
         </GridView>
 
-        <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1"  VerticalAlignment="Center"  HorizontalAlignment="Right" Height="50" Margin="0,0,0,0" >
+        <StackPanel x:Name="NowPlaying" Orientation="Horizontal"  Grid.Row="3" Grid.Column="1"  VerticalAlignment="Center"  HorizontalAlignment="Right" Height="50" Margin="0,0,0,0">
             <!--//Display Song Name That is Playing-->
             <TextBlock Name="ArtistName" Text="Artist" TextAlignment="Center" HorizontalAlignment="Right" VerticalAlignment="Center"/>
             <TextBlock Text=" - " TextAlignment="Center" HorizontalAlignment="Right" VerticalAlignment="Center"/>
             <TextBlock Name="SongName" Text="Song" TextAlignment="Center" HorizontalAlignment="Right" VerticalAlignment="Center"/>
             <!--//Display Time Duration That is Playing-->
             <TextBlock Name ="TimeDuration" Width ="100" Text="00.00.00" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
-            <Slider x:Name="timelineSlider"  Width="450" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-            <Rectangle Width ="50" HorizontalAlignment="Right" Fill="White" Margin="150,0,0,0"/>
+            <TextBlock Foreground="White" VerticalAlignment="Center">Seek To</TextBlock>
+            <Slider x:Name="timelineSlider" HorizontalAlignment="Left" VerticalAlignment="Center"  ValueChanged="SeekToMediaPosition" Minimum="0" Maximum="1" Value="0.5" Width="70"/>
+            <Rectangle Width ="50" HorizontalAlignment="Right" Fill="White"/>
             <Button x:Name="PreviousButton" 
                 Background="White"
                 FontFamily="Segoe MDL2 Assets"
@@ -150,7 +151,6 @@
                 HorizontalAlignment="Right"
                 FontFamily="Segoe MDL2 Assets"
                 Content="&#xE893;" Height ="50" Width="50" Click="ForwardButton_Click" />
-
         </StackPanel>
 
     </Grid>
