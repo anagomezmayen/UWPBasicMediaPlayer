@@ -92,6 +92,7 @@
                         <GridView.ItemTemplate>
                             <DataTemplate x:DataType="model:PlayList">
                                 <StackPanel Orientation="Vertical">
+                                    <Image Name="PlayListImage" Height="100" Width="100" Source="Assets/Images/playlistGeneral.png" HorizontalAlignment="Center"/>
                                     <TextBlock Text="{x:Bind Title}" Width="100" TextAlignment ="Center" TextWrapping="Wrap" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Top" />
                                 </StackPanel>
                             </DataTemplate>

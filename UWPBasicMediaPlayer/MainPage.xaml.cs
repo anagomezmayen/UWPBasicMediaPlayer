@@ -129,6 +129,7 @@ namespace UWPBasicMediaPlayer
                     SongGridView.Visibility = Visibility.Visible;
                     PlayListGridView.Visibility = Visibility.Collapsed;
                     ArtistsGridView.Visibility = Visibility.Collapsed;
+                   
                 }
             }
         }
@@ -139,8 +140,9 @@ namespace UWPBasicMediaPlayer
             this.Songs.Clear();
             selectedPlaylist.Songs.ForEach(song => this.Songs.Add(song));
             PlayListGridView.Margin = new Thickness(20, 150, 0, 0);
+            ItemTextBlock.Text = "All Songs on the playlist " + selectedPlaylist.Title;
             SongGridView.Visibility = Visibility.Visible;
-            PlayListGridView.Visibility = Visibility.Visible;
+            PlayListGridView.Visibility = Visibility.Collapsed;
         }
 
         private void SongGridView_ItemClick(object sender, ItemClickEventArgs e)

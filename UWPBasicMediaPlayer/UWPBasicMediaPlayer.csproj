@@ -144,6 +144,7 @@
     <Content Include="Assets\Icons\MyMusic.png" />
     <Content Include="Assets\Icons\Playlist.png" />
     <Content Include="Assets\Images\artistGeneral.png" />
+    <Content Include="Assets\Images\playlistGeneral.png" />
     <Content Include="Assets\Images\songGeneral.png" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\Music\2file_example.mp3" />
