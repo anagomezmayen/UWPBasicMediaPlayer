@@ -86,6 +86,8 @@ namespace UWPBasicMediaPlayer
             if (this.currentSong != null)
             {
                 MyMediaElement.Source = new Uri(BaseUri, this.currentSong.SongFile);
+                timelineSlider.Maximum = MyMediaElement.NaturalDuration.TimeSpan.TotalSeconds;
+                timelineSlider.Value = 0;
             }
         }
 
@@ -132,7 +134,7 @@ namespace UWPBasicMediaPlayer
             PlayListGridView.Margin = new Thickness(20, 150, 0, 0);
             ItemTextBlock.Text = "All Songs on the playlist " + selectedPlaylist.Title;
             SongGridView.Visibility = Visibility.Visible;
-            PlayListGridView.Visibility = Visibility.Collapsed;
+            PlayListGridView.Visibility = Visibility.Visible;
             ArtistsGridView.Visibility = Visibility.Collapsed;
         }
 
@@ -159,18 +161,19 @@ namespace UWPBasicMediaPlayer
         private void SeekToMediaPosition(object sender, RangeBaseValueChangedEventArgs e)
         {
             var sliderValue = (int)timelineSlider.Value;
-            var ts = new TimeSpan(0, 0, 0, 0, sliderValue);
+            var ts = new TimeSpan(0, 0, sliderValue);
             MyMediaElement.Position = ts;
         }
 
         private void MyMediaElement_MediaOpened(object sender, RoutedEventArgs e)
         {
-            timelineSlider.Maximum = MyMediaElement.NaturalDuration.TimeSpan.Seconds;
+            timelineSlider.Maximum = MyMediaElement.NaturalDuration.TimeSpan.TotalSeconds;
         }
 
         private void MyMediaElement_MediaEnded(object sender, RoutedEventArgs e)
         {
             MyMediaElement.Stop();
+            timelineSlider.Value = 0;
         }
     }
 }

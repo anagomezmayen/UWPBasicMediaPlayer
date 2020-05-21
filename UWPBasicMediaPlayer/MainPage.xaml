@@ -131,7 +131,7 @@
             <!--//Display Time Duration That is Playing-->
             <TextBlock Name ="TimeDuration" Width ="100" Text="00.00.00" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
             <TextBlock Foreground="White" VerticalAlignment="Center">Seek To</TextBlock>
-            <Slider x:Name="timelineSlider" HorizontalAlignment="Left" VerticalAlignment="Center"  ValueChanged="SeekToMediaPosition" Minimum="0" Maximum="1" Value="0.5" Width="70"/>
+            <Slider x:Name="timelineSlider" HorizontalAlignment="Left" VerticalAlignment="Center"  ValueChanged="SeekToMediaPosition" Minimum="0" Maximum="1000" Value="0.5" Width="70"/>
             <Rectangle Width ="50" HorizontalAlignment="Right" Fill="White"/>
             <Button x:Name="PreviousButton" 
                 Background="White"
