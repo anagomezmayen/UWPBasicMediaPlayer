@@ -48,6 +48,7 @@ namespace UWPBasicMediaPlayer
 
             BackButton.Visibility = Visibility.Collapsed;
             PlayListGridView.Visibility = Visibility.Collapsed;
+            ArtistsGridView.Visibility = Visibility.Collapsed;
         }
 
         private void HamburgerButton_Click(object sender, RoutedEventArgs e)
@@ -109,13 +110,26 @@ namespace UWPBasicMediaPlayer
                 PlayListGridView.Margin = new Thickness(20,0,0,0);
                 SongGridView.Visibility = Visibility.Collapsed;
                 PlayListGridView.Visibility = Visibility.Visible;
+                ArtistsGridView.Visibility = Visibility.Collapsed;
             }
-            else { 
-                ItemTextBlock.Text = Feature.Item.ToString();
-                SongManager.GetSongsByFeature(Songs, Feature.Item);
-                BackButton.Visibility = Visibility.Visible;
-                SongGridView.Visibility = Visibility.Visible;
-                PlayListGridView.Visibility = Visibility.Collapsed;
+            else {
+
+                if (Feature.Item == FeatureItems.Artists)
+                {
+                    SongGridView.Visibility = Visibility.Collapsed;
+                    ArtistsGridView.Visibility = Visibility.Visible;
+                    ItemTextBlock.Text = "All Artists";
+                    PlayListGridView.Visibility = Visibility.Collapsed;
+                }
+                else
+                {
+                    ItemTextBlock.Text = Feature.Item.ToString();
+                    SongManager.GetSongsByFeature(Songs, Feature.Item);
+                    BackButton.Visibility = Visibility.Visible;
+                    SongGridView.Visibility = Visibility.Visible;
+                    PlayListGridView.Visibility = Visibility.Collapsed;
+                    ArtistsGridView.Visibility = Visibility.Collapsed;
+                }
             }
         }
 
@@ -138,11 +152,14 @@ namespace UWPBasicMediaPlayer
             
         }
 
-        private void ArtistsView_ItemClick(object sender, ItemClickEventArgs e)
+        private void ArtistsGridView_ItemClick(object sender, ItemClickEventArgs e)
         {
             var artist = (Artist)e.ClickedItem;
             SongManager.GetSongsByArtist(Songs, artist.Name.Trim().ToUpper());
             ItemTextBlock.Text = "All Songs by "+artist.Name;
+            SongGridView.Visibility = Visibility.Visible;
+            ArtistsGridView.Visibility = Visibility.Collapsed;
+           
         }
 
         private void Slider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)

@@ -143,8 +143,10 @@
     <Content Include="Assets\Icons\Favourite.png" />
     <Content Include="Assets\Icons\MyMusic.png" />
     <Content Include="Assets\Icons\Playlist.png" />
+    <Content Include="Assets\Images\artistGeneral.png" />
     <Content Include="Assets\Images\songGeneral.png" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
+    <Content Include="Assets\Music\2file_example.mp3" />
     <Content Include="Assets\Music\One Small Voice.mp3" />
     <Content Include="Assets\Music\How Great Is Our God.mp3" />
     <Content Include="Assets\Music\_playlists.txt" />

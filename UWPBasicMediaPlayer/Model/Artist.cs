@@ -9,5 +9,12 @@ namespace UWPBasicMediaPlayer.Model
     public class Artist
     {
         public string Name { get; set; }
+
+        public bool Equals(Artist artist)
+        {
+            return Name.Equals(artist.Name);
+
+        }
     }
+
 }
