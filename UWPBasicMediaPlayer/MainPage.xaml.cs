@@ -39,6 +39,7 @@ namespace UWPBasicMediaPlayer
 
             BackButton.Visibility = Visibility.Collapsed;
             PlayListGridView.Visibility = Visibility.Collapsed;
+            ArtistsGridView.Visibility = Visibility.Collapsed;
         }
 
         private void HamburgerButton_Click(object sender, RoutedEventArgs e)
@@ -101,13 +102,25 @@ namespace UWPBasicMediaPlayer
                 PlayListGridView.Visibility = Visibility.Visible;
                 ArtistsView.Visibility = Visibility.Collapsed;
             }
-            else
-            {
-                ItemTextBlock.Text = Feature.Item.ToString();
-                SongManager.GetSongsByFeature(Songs, Feature.Item);
-                BackButton.Visibility = Visibility.Visible;
-                SongGridView.Visibility = Visibility.Visible;
-                PlayListGridView.Visibility = Visibility.Collapsed;
+            else {
+
+                if (Feature.Item == FeatureItems.Artists)
+                {
+                    SongGridView.Visibility = Visibility.Collapsed;
+                    ArtistsGridView.Visibility = Visibility.Visible;
+                    ItemTextBlock.Text = "All Artists";
+                    PlayListGridView.Visibility = Visibility.Collapsed;
+                }
+                else
+                {
+                    ItemTextBlock.Text = Feature.Item.ToString();
+                    SongManager.GetSongsByFeature(Songs, Feature.Item);
+                    BackButton.Visibility = Visibility.Visible;
+                    SongGridView.Visibility = Visibility.Visible;
+                    PlayListGridView.Visibility = Visibility.Collapsed;
+                    ArtistsGridView.Visibility = Visibility.Collapsed;
+                   
+                }
             }
         }
 
@@ -117,6 +130,7 @@ namespace UWPBasicMediaPlayer
             this.Songs.Clear();
             selectedPlaylist.Songs.ForEach(song => this.Songs.Add(song));
             PlayListGridView.Margin = new Thickness(20, 150, 0, 0);
+            ItemTextBlock.Text = "All Songs on the playlist " + selectedPlaylist.Title;
             SongGridView.Visibility = Visibility.Visible;
             PlayListGridView.Visibility = Visibility.Visible;
             ArtistsView.Visibility = Visibility.Visible;
@@ -132,7 +146,7 @@ namespace UWPBasicMediaPlayer
             timelineSlider.Visibility = Visibility.Visible;
         }
 
-        private void ArtistsView_ItemClick(object sender, ItemClickEventArgs e)
+        private void ArtistsGridView_ItemClick(object sender, ItemClickEventArgs e)
         {
             var artist = (Artist)e.ClickedItem;
             SongManager.GetSongsByArtist(Songs, artist.Name.Trim().ToUpper());

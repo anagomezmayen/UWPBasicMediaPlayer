@@ -53,10 +53,10 @@ namespace UWPBasicMediaPlayer.Model
         {
             var allSongs = GetSongs();
             artists.Clear();
-            foreach (var s in allSongs)
-            {
-                artists.Add(new Artist { Name = s.Artist }); // We have to check that name is unique
-            } 
+            List<string> names = new List<string>();
+            allSongs.ForEach(s => names.Add(s.Artist));
+            names=names.Distinct().ToList();
+            names.ForEach(n => artists.Add(new Artist { Name = n })); 
         }
 
         public static Song GetSongByTitle(string title)
