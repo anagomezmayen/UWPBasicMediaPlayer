@@ -132,8 +132,8 @@ namespace UWPBasicMediaPlayer
             PlayListGridView.Margin = new Thickness(20, 150, 0, 0);
             ItemTextBlock.Text = "All Songs on the playlist " + selectedPlaylist.Title;
             SongGridView.Visibility = Visibility.Visible;
-            PlayListGridView.Visibility = Visibility.Visible;
-            ArtistsGridView.Visibility = Visibility.Visible;
+            PlayListGridView.Visibility = Visibility.Collapsed;
+            ArtistsGridView.Visibility = Visibility.Collapsed;
         }
 
         private void SongGridView_ItemClick(object sender, ItemClickEventArgs e)
@@ -142,7 +142,7 @@ namespace UWPBasicMediaPlayer
             this.PlayAndupdatePreviousAndCurrentSong(song);
             ArtistName.Text = song.Artist;
             SongName.Text = song.Title;
-            ArtistsGridView.Visibility = Visibility.Visible;
+            ArtistsGridView.Visibility = Visibility.Collapsed;
             timelineSlider.Visibility = Visibility.Visible;
         }
 
@@ -152,7 +152,7 @@ namespace UWPBasicMediaPlayer
             SongManager.GetSongsByArtist(Songs, artist.Name.Trim().ToUpper());
             ItemTextBlock.Text = "All Songs by " + artist.Name;
             PlayListGridView.Visibility = Visibility.Collapsed;
-            ArtistsGridView.Visibility = Visibility.Visible;
+            ArtistsGridView.Visibility = Visibility.Collapsed;
             SongGridView.Visibility = Visibility.Visible;
         }
 
