@@ -142,6 +142,7 @@
     <Content Include="Assets\Icons\Albums.png" />
     <Content Include="Assets\Icons\Artists.png" />
     <Content Include="Assets\Icons\Playlist.png" />
+    <Content Include="Assets\Images\albumGeneral.png" />
     <Content Include="Assets\Images\artistGeneral.png" />
     <Content Include="Assets\Images\playlistGeneral.png" />
     <Content Include="Assets\Images\songGeneral.png" />

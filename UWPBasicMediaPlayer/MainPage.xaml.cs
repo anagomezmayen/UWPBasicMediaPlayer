@@ -17,6 +17,7 @@ namespace UWPBasicMediaPlayer
     {
         private ObservableCollection<Song> Songs;
         private ObservableCollection<Artist> Artists;
+        private ObservableCollection<Album> Albums;
         private ObservableCollection<PlayList> PlayLists = new ObservableCollection<PlayList>();
         private List<Feature> Features;
         private Song previousSong;
@@ -27,8 +28,10 @@ namespace UWPBasicMediaPlayer
             this.InitializeComponent();
             Songs = new ObservableCollection<Song>();
             Artists = new ObservableCollection<Artist>();
+            Albums = new ObservableCollection<Album>();
             SongManager.GetAllSongs(Songs);
             SongManager.GetAllArtist(Artists);//Artists
+            SongManager.GetAllAlbums(Albums);//Albums
 
             Features = new List<Feature>();
             Features.Add(new Feature { IconFile = "Assets/Icons/Albums.png", Item = FeatureItems.Albums });
@@ -38,6 +41,7 @@ namespace UWPBasicMediaPlayer
             BackButton.Visibility = Visibility.Collapsed;
             PlayListGridView.Visibility = Visibility.Collapsed;
             ArtistsGridView.Visibility = Visibility.Collapsed;
+            AlbumsGridView.Visibility = Visibility.Collapsed;
         }
 
         private void HamburgerButton_Click(object sender, RoutedEventArgs e)
@@ -55,28 +59,6 @@ namespace UWPBasicMediaPlayer
             BackButton.Visibility = Visibility.Collapsed;
         }
 
-        private void PauseButton_Click(object sender, RoutedEventArgs e)
-        {
-            MyMediaElement.Pause();
-        }
-        private void PlayButton_Click(object sender, RoutedEventArgs e)
-        {
-            MyMediaElement.Play();
-        }
-
-        private void ForwardButton_Click(object sender, RoutedEventArgs e)
-        {
-            TimeSpan currentPostion = MyMediaElement.Position;
-            var newPostion = currentPostion.Add(new TimeSpan(0, 0, 5));
-            MyMediaElement.Position = newPostion;
-        }
-
-        private void PreviousButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.PlayAndupdatePreviousAndCurrentSong(this.previousSong);
-            // Update the selected item in the UI.
-        }
-
         private void PlayAndupdatePreviousAndCurrentSong(Song currentSong)
         {
             this.previousSong = this.currentSong;
@@ -84,8 +66,7 @@ namespace UWPBasicMediaPlayer
             if (this.currentSong != null)
             {
                 MyMediaElement.Source = new Uri(BaseUri, this.currentSong.SongFile);
-                //timelineSlider.Maximum = MyMediaElement.NaturalDuration.TimeSpan.TotalSeconds;
-                //timelineSlider.Value = 0;
+                
             }
         }
 
@@ -104,6 +85,7 @@ namespace UWPBasicMediaPlayer
                 SongGridView.Visibility = Visibility.Collapsed;
                 PlayListGridView.Visibility = Visibility.Visible;
                 ArtistsGridView.Visibility = Visibility.Collapsed;
+                AlbumsGridView.Visibility = Visibility.Collapsed;
             }
             else
             {
@@ -111,18 +93,20 @@ namespace UWPBasicMediaPlayer
                 if (Feature.Item == FeatureItems.Artists)
                 {
                     SongGridView.Visibility = Visibility.Collapsed;
+                    AlbumsGridView.Visibility = Visibility.Collapsed;
                     ArtistsGridView.Visibility = Visibility.Visible;
                     ItemTextBlock.Text = "All Artists";
                     PlayListGridView.Visibility = Visibility.Collapsed;
                 }
-                else
+                else //Albums
                 {
                     ItemTextBlock.Text = Feature.Item.ToString();
-                    SongManager.GetSongsByFeature(Songs, Feature.Item);
                     BackButton.Visibility = Visibility.Visible;
-                    SongGridView.Visibility = Visibility.Visible;
+                    SongGridView.Visibility = Visibility.Collapsed;
                     PlayListGridView.Visibility = Visibility.Collapsed;
                     ArtistsGridView.Visibility = Visibility.Collapsed;
+                    AlbumsGridView.Visibility = Visibility.Visible;
+                    ItemTextBlock.Text = "All Albums";
 
                 }
             }
@@ -147,8 +131,7 @@ namespace UWPBasicMediaPlayer
             ArtistName.Text = song.Artist;
             SongName.Text = song.Title;
             ArtistsGridView.Visibility = Visibility.Collapsed;
-           // timelineSlider.Visibility = Visibility.Visible;
-        }
+                   }
 
         private void ArtistsGridView_ItemClick(object sender, ItemClickEventArgs e)
         {
@@ -160,23 +143,6 @@ namespace UWPBasicMediaPlayer
             SongGridView.Visibility = Visibility.Visible;
         }
 
-        private void SeekToMediaPosition(object sender, RangeBaseValueChangedEventArgs e)
-        {
-            //var sliderValue = (int)timelineSlider.Value;
-            //var ts = new TimeSpan(0, 0, sliderValue);
-            //MyMediaElement.Position = ts;
-        }
-
-        private void MyMediaElement_MediaOpened(object sender, RoutedEventArgs e)
-        {
-           // timelineSlider.Maximum = MyMediaElement.NaturalDuration.TimeSpan.TotalSeconds;
-        }
-
-        private void MyMediaElement_MediaEnded(object sender, RoutedEventArgs e)
-        {
-            MyMediaElement.Stop();
-           // timelineSlider.Value = 0;
-        }
 
         private void StackPanel_RightTapped(object sender, Windows.UI.Xaml.Input.RightTappedRoutedEventArgs e)
         {
@@ -212,6 +178,17 @@ namespace UWPBasicMediaPlayer
             var song = senderElement.DataContext as Song;
 
             playList.AddSong(song);
+        }
+
+        private void AlbumsGridView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            var album = (Album)e.ClickedItem;
+            SongManager.GetSongsByAlbum(Songs, album.Name.Trim().ToUpper());
+            ItemTextBlock.Text = "All Songs in the Album " + album.Name;
+            PlayListGridView.Visibility = Visibility.Collapsed;
+            ArtistsGridView.Visibility = Visibility.Collapsed;
+            SongGridView.Visibility = Visibility.Visible;
+            AlbumsGridView.Visibility = Visibility.Collapsed;
         }
     }
 }

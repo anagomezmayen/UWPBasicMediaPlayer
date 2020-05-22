@@ -56,6 +56,23 @@ namespace UWPBasicMediaPlayer.Model
             names=names.Distinct().ToList();
             names.ForEach(n => artists.Add(new Artist { Name = n })); 
         }
+        public static void GetAllAlbums(ObservableCollection<Album> albums)
+        {
+            var allSongs = GetSongs();
+            albums.Clear();
+            List<string> titles = new List<string>();
+            allSongs.ForEach(s => titles.Add(s.Album));
+            titles = titles.Distinct().ToList();
+            titles.ForEach(t => albums.Add(new Album { Name = t }));
+        }
+
+        public static void GetSongsByAlbum(ObservableCollection<Song> songs, string title)
+        {
+            var allSongs = GetSongs();
+            var filteredSongs = allSongs.Where(song => song.Album.Trim().ToUpper().Equals(title)).ToList();
+            songs.Clear();
+            filteredSongs.ForEach(song => songs.Add(song));
+        }
 
         public static Song GetSongByTitle(string title)
         {

@@ -122,6 +122,24 @@
                         </GridView.ItemTemplate>
                     </GridView>
                     <!-- end artists-->
+                    <!--Albums-->
+                    <GridView Grid.Row="2" Grid.Column="2" 
+                        Margin="10,25,0,50"
+                        Name="AlbumsGridView"
+                        IsItemClickEnabled="True"
+                        ItemsSource="{x:Bind Albums}"
+                        ItemClick="AlbumsGridView_ItemClick">
+                        <GridView.ItemTemplate>
+                            <DataTemplate x:DataType="model:Album">
+                                <StackPanel Orientation="Vertical" VerticalAlignment="Top"  HorizontalAlignment="Left">
+                                    <Image Name="ArtistImage" Height="100" Width="100" Source="Assets/Images/albumGeneral.png" HorizontalAlignment="Center"/>
+                                    <TextBlock Text="{x:Bind Name}" Margin="10,0,0,10" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </GridView.ItemTemplate>
+                    </GridView>
+                    <!-- end albums-->
+
                 </Grid>
             </SplitView.Content>
         </SplitView>
