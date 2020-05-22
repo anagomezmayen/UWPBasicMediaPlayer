@@ -188,7 +188,7 @@ namespace UWPBasicMediaPlayer
             var icon = new BitmapIcon() { UriSource = new Uri("ms-appx:///Assets/Images/songGeneral.png") };
             
             var playLists = PlayListManager.GetAllPlayLists();
-            foreach (var playlist in this.PlayLists)
+            foreach (var playlist in playLists)
             {
                 var playListMenuFlyoutItem = new MenuFlyoutItem() { Text = playlist.Title };
                 playListMenuFlyoutItem.Click += AddToPlaylistMenu_ItemClick;
