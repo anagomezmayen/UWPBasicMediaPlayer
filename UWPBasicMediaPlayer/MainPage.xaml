@@ -60,8 +60,8 @@
                 </ListView>
             </SplitView.Pane>
 
-            <SplitView.Content>
-                <Grid Margin="20,0,0,100" >
+            <SplitView.Content >
+                <Grid Margin="20,0,0,100">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
@@ -88,7 +88,8 @@
                         Name="PlayListGridView"
                         IsItemClickEnabled="True"
                         ItemsSource="{x:Bind PlayLists}"
-                        ItemClick="PlayListGridView_ItemClick" Margin="20,150,0,0">
+                        ItemClick="PlayListGridView_ItemClick" 
+                        Margin="20,150,0,50">
                         <GridView.ItemTemplate>
                             <DataTemplate x:DataType="model:PlayList">
                                 <StackPanel Orientation="Vertical">
@@ -100,7 +101,7 @@
                     </GridView>
                     <!--Artists-->
                     <GridView Grid.Row="2" Grid.Column="2" 
-                  Margin="10,25,0,0"
+                        Margin="10,25,0,50"
                         Name="ArtistsGridView"
                         IsItemClickEnabled="True"
                         ItemsSource="{x:Bind Artists}"

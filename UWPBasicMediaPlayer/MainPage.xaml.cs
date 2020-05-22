@@ -33,8 +33,6 @@ namespace UWPBasicMediaPlayer
             Features = new List<Feature>();
             Features.Add(new Feature { IconFile = "Assets/Icons/Albums.png", Item = FeatureItems.Albums });
             Features.Add(new Feature { IconFile = "Assets/Icons/Artists.png", Item = FeatureItems.Artists });
-            Features.Add(new Feature { IconFile = "Assets/Icons/Favourite.png", Item = FeatureItems.Favourite });
-            Features.Add(new Feature { IconFile = "Assets/Icons/MyMusic.png", Item = FeatureItems.MyMusic });
             Features.Add(new Feature { IconFile = "Assets/Icons/Playlist.png", Item = FeatureItems.Playlist });
 
             BackButton.Visibility = Visibility.Collapsed;
@@ -96,7 +94,7 @@ namespace UWPBasicMediaPlayer
             var Feature = (Feature)e.ClickedItem;
             if (Feature.Item == FeatureItems.Playlist)
             {
-                ItemTextBlock.Text = "All my playlists";
+                ItemTextBlock.Text = "All Playlists";
                 var allPlayLists = PlayListManager.GetAllPlayLists();
                 PlayLists.Clear();
                 allPlayLists.ForEach(pl => PlayLists.Add(pl));
