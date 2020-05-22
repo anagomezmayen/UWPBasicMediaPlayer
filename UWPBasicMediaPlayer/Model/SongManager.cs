@@ -64,5 +64,13 @@ namespace UWPBasicMediaPlayer.Model
             var allSongs = GetSongs();
             return allSongs.Where(song => song.Title == title).FirstOrDefault();
         }
+        public static void GetSongBySearch(ObservableCollection<Song> songs, string title)
+        {
+            var allSongs = GetSongs();
+            var filteredSongs = allSongs.Where(prop => prop.Title == title).ToList();
+            songs.Clear();
+            filteredSongs.ForEach(p => songs.Add(p));
+            
+       }
     }
 }

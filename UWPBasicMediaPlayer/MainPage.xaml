@@ -31,9 +31,14 @@
              My Media Player
         </TextBlock>
 
-        <TextBox Grid.Row="0" Grid.Column="2" Text="Search" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="0,10,10,0" Width="200"/>
-
-
+        <AutoSuggestBox Name="SearchBox" Grid.Row="0" Grid.Column="2" 
+                        QueryIcon="Find"  
+                        PlaceholderText="Search" 
+                        TextChanged="SearchBox_TextChanged" 
+                        QuerySubmitted="SearchBox_QuerySubmitted" 
+                        HorizontalAlignment="Right" 
+                        VerticalAlignment="Center"  
+                        Margin="0,10,10,0" Width="200"/>
 
         <Button Name="HamburgerButton" Grid.Row="1" Grid.Column="0"
             Background="WhiteSmoke"

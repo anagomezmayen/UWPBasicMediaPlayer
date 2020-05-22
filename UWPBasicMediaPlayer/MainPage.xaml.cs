@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using UWPBasicMediaPlayer.Model;
+using Windows.ApplicationModel.VoiceCommands;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -21,6 +23,7 @@ namespace UWPBasicMediaPlayer
         private List<Feature> Features;
         private Song previousSong;
         private Song currentSong;
+        private List<String> Suggestions;
 
         public MainPage()
         {
@@ -172,6 +175,23 @@ namespace UWPBasicMediaPlayer
         {
             MyMediaElement.Stop();
             timelineSlider.Value = 0;
+        }
+
+
+
+        private void SearchBox_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
+        {
+            SongManager.GetSongBySearch(Songs, sender.Text);
+            ItemTextBlock.Text = sender.Text;
+            BackButton.Visibility = Visibility.Visible;
+            
+        }
+
+        private void SearchBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
+        {
+            SongManager.GetAllSongs(Songs);
+            Suggestions = Songs.Where(p => p.Title.StartsWith(sender.Text)).Select(p => p.Title).ToList();
+            SearchBox.ItemsSource = Suggestions;
         }
     }
 }
