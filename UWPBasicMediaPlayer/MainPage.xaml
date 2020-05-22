@@ -81,10 +81,10 @@
                         ItemClick="SongGridView_ItemClick" Margin="20,0,0,0">
                         <GridView.ItemTemplate>
                             <DataTemplate x:DataType="model:Song">
-                                <StackPanel Orientation="Vertical">
+                                <StackPanel Orientation="Vertical" RightTapped="StackPanel_RightTapped">
                                     <Image x:Name="MyImage" Height="100" Width="100" Source="{x:Bind CoverImage}" HorizontalAlignment="Center"/>
-                                    <TextBlock Text="{x:Bind Title}" Width="100" TextAlignment ="Center" TextWrapping="Wrap" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Top" />
-                                </StackPanel>
+                                    <TextBlock Text="{x:Bind Title}" Width="100" TextAlignment ="Center" TextWrapping="Wrap" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                                    </StackPanel>
                             </DataTemplate>
                         </GridView.ItemTemplate>
                     </GridView>
@@ -104,7 +104,7 @@
                             </DataTemplate>
                         </GridView.ItemTemplate>
                     </GridView>
-<!--Artists-->
+                    <!--Artists-->
                     <GridView Grid.Row="2" Grid.Column="2" 
                         Margin="10,25,0,50"
                         Name="ArtistsGridView"
@@ -120,14 +120,11 @@
                             </DataTemplate>
                         </GridView.ItemTemplate>
                     </GridView>
-<!-- end artists-->
+                    <!-- end artists-->
                 </Grid>
             </SplitView.Content>
         </SplitView>
-
-           
-
-        <StackPanel x:Name="NowPlaying" Orientation="Horizontal"  Grid.Row="3"  VerticalAlignment="Center"  Grid.ColumnSpan="3" HorizontalAlignment="Center" Height="50" Margin="0,0,0,0">
+        <StackPanel x:Name="NowPlaying" Orientation="Horizontal"  Grid.Row="3" Grid.ColumnSpan="3"  VerticalAlignment="Center"  HorizontalAlignment="Right" Height="50" Margin="0,0,0,0">
             <!--//Display Song Name That is Playing-->
             <TextBlock Name="ArtistName" Text="Artist" TextAlignment="Center" HorizontalAlignment="Right" VerticalAlignment="Center"/>
             <TextBlock Text=" - " TextAlignment="Center" HorizontalAlignment="Right" VerticalAlignment="Center"/>

@@ -10,8 +10,6 @@ namespace UWPBasicMediaPlayer.Model
 {
     public static class SongManager
     {
-        public const string MusicFilesPath = "Assets/Music";
-
         public static void GetAllSongs(System.Collections.ObjectModel.ObservableCollection<Song> songs)
         {
             var allSongs = GetSongs();
@@ -41,7 +39,7 @@ namespace UWPBasicMediaPlayer.Model
         public static List<Song> GetSongs()
         {
             var songs = new List<Song>();
-            string[] filePaths = Directory.GetFiles(MusicFilesPath, "*.mp3");//read only mp3 files
+            string[] filePaths = Directory.GetFiles(Constants.MusicFilesPath, "*.mp3");//read only mp3 files
             foreach (var filepath in filePaths)
             {
                 songs.Add(new Song(filepath));
