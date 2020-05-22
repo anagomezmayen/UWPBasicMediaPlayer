@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Shapes;
@@ -14,17 +15,35 @@ namespace UWPBasicMediaPlayer.Model
     // Play List
     public static class PlayListManager
     {
+        private static List<PlayList> playLists = new List<PlayList>();
 
-        public static void GetAllPlayLists(ObservableCollection<PlayList> playlists, string musicFilesPath)
+        static PlayListManager()
         {
-            playlists.Clear();
-
-            var allPlayLists = GetPlayLists(musicFilesPath);
-            allPlayLists.ForEach(pl => playlists.Add(pl));
+            playLists = GetPlayLists(Constants.MusicFilesPath);
         }
 
+        public static List<PlayList> GetAllPlayLists()
+        {
+            return PlayListManager.playLists;
+        }
 
-        public static List<PlayList> GetPlayLists(string musicFilesPath)
+        public static PlayList GetPlayListByTitle(string title)
+        {
+            return PlayListManager.playLists.Where(playList => playList.Title == title).SingleOrDefault();
+        }
+
+        public static void SavePlayLists()
+        {
+
+        }
+
+        public static List<PlayList> ReLoadPlayLists()
+        {
+            playLists = GetPlayLists(Constants.MusicFilesPath);
+            return playLists;
+        }
+
+        private static List<PlayList> GetPlayLists(string musicFilesPath)
         {
             var playlists = new List<PlayList>();
 

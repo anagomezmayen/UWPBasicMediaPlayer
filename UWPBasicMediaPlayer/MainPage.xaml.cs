@@ -97,14 +97,18 @@ namespace UWPBasicMediaPlayer
             if (Feature.Item == FeatureItems.Playlist)
             {
                 ItemTextBlock.Text = "All my playlists";
-                PlayListManager.GetAllPlayLists(PlayLists, SongManager.MusicFilesPath);//added
+                var allPlayLists = PlayListManager.GetAllPlayLists();
+                PlayLists.Clear();
+                allPlayLists.ForEach(pl => PlayLists.Add(pl));
+
                 BackButton.Visibility = Visibility.Visible;
                 PlayListGridView.Margin = new Thickness(20, 0, 0, 0);
                 SongGridView.Visibility = Visibility.Collapsed;
                 PlayListGridView.Visibility = Visibility.Visible;
                 ArtistsGridView.Visibility = Visibility.Collapsed;
             }
-            else {
+            else
+            {
 
                 if (Feature.Item == FeatureItems.Artists)
                 {
@@ -121,7 +125,7 @@ namespace UWPBasicMediaPlayer
                     SongGridView.Visibility = Visibility.Visible;
                     PlayListGridView.Visibility = Visibility.Collapsed;
                     ArtistsGridView.Visibility = Visibility.Collapsed;
-                   
+
                 }
             }
         }
@@ -174,6 +178,42 @@ namespace UWPBasicMediaPlayer
         {
             MyMediaElement.Stop();
             timelineSlider.Value = 0;
+        }
+
+        private void StackPanel_RightTapped(object sender, Windows.UI.Xaml.Input.RightTappedRoutedEventArgs e)
+        {
+            var songMenuFlyoutSubItem = new MenuFlyoutSubItem()
+            {
+                Text = "AddToPlayList"
+            };
+
+            var icon = new BitmapIcon() { UriSource = new Uri("ms-appx:///Assets/Images/songGeneral.png") };
+            
+            var playLists = PlayListManager.GetAllPlayLists();
+            foreach (var playlist in this.PlayLists)
+            {
+                var playListMenuFlyoutItem = new MenuFlyoutItem() { Text = playlist.Title };
+                playListMenuFlyoutItem.Click += AddToPlaylistMenu_ItemClick;
+                songMenuFlyoutSubItem.Items.Add(playListMenuFlyoutItem);
+            }
+
+            var addToPlaylistFlyout = new MenuFlyout();
+            addToPlaylistFlyout.Items.Add(songMenuFlyoutSubItem);
+            FrameworkElement senderElement = sender as FrameworkElement;
+            addToPlaylistFlyout.ShowAt(sender as UIElement, e.GetPosition(sender as UIElement));
+        }
+
+        private void AddToPlaylistMenu_ItemClick(object sender, RoutedEventArgs e)
+        {
+            var flyoutItem = (MenuFlyoutItem)e.OriginalSource;
+
+            // find playlist
+            var playList = PlayListManager.GetPlayListByTitle(flyoutItem.Text);
+
+            FrameworkElement senderElement = sender as FrameworkElement;
+            var song = senderElement.DataContext as Song;
+
+            playList.AddSong(song);
         }
     }
 }
