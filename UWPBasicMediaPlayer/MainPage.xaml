@@ -116,15 +116,13 @@
                         </GridView.ItemTemplate>
                     </GridView>
 <!-- end artists-->
-                    
-
                 </Grid>
             </SplitView.Content>
         </SplitView>
 
            
 
-        <StackPanel x:Name="NowPlaying" Orientation="Horizontal"  Grid.Row="3" Grid.Column="1"  VerticalAlignment="Center"  HorizontalAlignment="Left" Height="50">
+        <StackPanel x:Name="NowPlaying" Orientation="Horizontal"  Grid.Row="3"  VerticalAlignment="Center"  Grid.ColumnSpan="3" HorizontalAlignment="Center" Height="50" Margin="0,0,0,0">
             <!--//Display Song Name That is Playing-->
             <TextBlock Name="ArtistName" Text="Artist" TextAlignment="Center" HorizontalAlignment="Right" VerticalAlignment="Center"/>
             <TextBlock Text=" - " TextAlignment="Center" HorizontalAlignment="Right" VerticalAlignment="Center"/>
