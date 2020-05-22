@@ -84,8 +84,8 @@ namespace UWPBasicMediaPlayer
             if (this.currentSong != null)
             {
                 MyMediaElement.Source = new Uri(BaseUri, this.currentSong.SongFile);
-                timelineSlider.Maximum = MyMediaElement.NaturalDuration.TimeSpan.TotalSeconds;
-                timelineSlider.Value = 0;
+                //timelineSlider.Maximum = MyMediaElement.NaturalDuration.TimeSpan.TotalSeconds;
+                //timelineSlider.Value = 0;
             }
         }
 
@@ -147,7 +147,7 @@ namespace UWPBasicMediaPlayer
             ArtistName.Text = song.Artist;
             SongName.Text = song.Title;
             ArtistsGridView.Visibility = Visibility.Collapsed;
-            timelineSlider.Visibility = Visibility.Visible;
+           // timelineSlider.Visibility = Visibility.Visible;
         }
 
         private void ArtistsGridView_ItemClick(object sender, ItemClickEventArgs e)
@@ -162,20 +162,20 @@ namespace UWPBasicMediaPlayer
 
         private void SeekToMediaPosition(object sender, RangeBaseValueChangedEventArgs e)
         {
-            var sliderValue = (int)timelineSlider.Value;
-            var ts = new TimeSpan(0, 0, sliderValue);
-            MyMediaElement.Position = ts;
+            //var sliderValue = (int)timelineSlider.Value;
+            //var ts = new TimeSpan(0, 0, sliderValue);
+            //MyMediaElement.Position = ts;
         }
 
         private void MyMediaElement_MediaOpened(object sender, RoutedEventArgs e)
         {
-            timelineSlider.Maximum = MyMediaElement.NaturalDuration.TimeSpan.TotalSeconds;
+           // timelineSlider.Maximum = MyMediaElement.NaturalDuration.TimeSpan.TotalSeconds;
         }
 
         private void MyMediaElement_MediaEnded(object sender, RoutedEventArgs e)
         {
             MyMediaElement.Stop();
-            timelineSlider.Value = 0;
+           // timelineSlider.Value = 0;
         }
 
         private void StackPanel_RightTapped(object sender, Windows.UI.Xaml.Input.RightTappedRoutedEventArgs e)

@@ -15,6 +15,8 @@
             <RowDefinition Height="50" />
             <RowDefinition Height="*" />
             <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
 
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -31,7 +33,7 @@
              My Media Player
         </TextBlock>
 
-        <AutoSuggestBox Name="SearchBox" Grid.Row="0" Grid.Column="2" 
+      <!--  <AutoSuggestBox Name="SearchBox" Grid.Row="0" Grid.Column="2" 
                         QueryIcon="Find"  
                         PlaceholderText="Search" 
                         TextChanged="SearchBox_TextChanged" 
@@ -39,7 +41,7 @@
                         HorizontalAlignment="Right" 
                         VerticalAlignment="Center"  
                         Margin="0,10,10,0" Width="200"/>
-
+-->
         <Button Name="HamburgerButton" Grid.Row="1" Grid.Column="0"
             Background="WhiteSmoke"
             FontFamily="Segoe MDL2 Assets"
@@ -72,8 +74,7 @@
                         <RowDefinition Height="*" />
 
                     </Grid.RowDefinitions>
-                    <MediaElement Name="MyMediaElement" AutoPlay="True" MediaOpened="MyMediaElement_MediaOpened" MediaEnded="MyMediaElement_MediaEnded"/>
-
+                   
                     <GridView Grid.Row="1" 
                         Name="SongGridView"
                         IsItemClickEnabled="True"
@@ -130,34 +131,27 @@
             <TextBlock Text=" - " TextAlignment="Center" HorizontalAlignment="Right" VerticalAlignment="Center"/>
             <TextBlock Name="SongName" Text="Song" TextAlignment="Center" HorizontalAlignment="Right" VerticalAlignment="Center"/>
             <!--//Display Time Duration That is Playing-->
-            <TextBlock Name ="TimeDuration" Width ="100" Text="00.00.00" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
             <TextBlock Foreground="White" VerticalAlignment="Center">Seek To</TextBlock>
-            <Slider x:Name="timelineSlider" HorizontalAlignment="Left" VerticalAlignment="Center"  ValueChanged="SeekToMediaPosition" Minimum="0" Maximum="1000" Value="0.5" Width="300"/>
-            <Rectangle Width ="50" HorizontalAlignment="Right" Fill="White"/>
-            <Button x:Name="PreviousButton" 
-                Background="White"
-                FontFamily="Segoe MDL2 Assets"
-                Content="&#xE892;" Height ="50" Width="50" Click="PreviousButton_Click"/>
-
-            <Button x:Name="PauseButton"
-                Background="White"
-                HorizontalAlignment="Right"
-                FontFamily="Segoe MDL2 Assets"
-                Content="&#xEDB4;" Height ="50" Width="50" Click="PauseButton_Click" />
-
-            <Button x:Name="PlayButton"
-                Background="White"
-                HorizontalAlignment="Right"
-                FontFamily="Segoe MDL2 Assets"
-                Content="&#xE768;" Height ="50" Width="50" Click="PlayButton_Click" />
-
-            <Button x:Name="ForwardButton"
-                Background="White"
-                HorizontalAlignment="Right"
-                FontFamily="Segoe MDL2 Assets"
-                Content="&#xE893;" Height ="50" Width="50" Click="ForwardButton_Click" />
+         
         </StackPanel>
+        <!-- Row 5 is for slider and row 6 for buttons-->
+        <Grid x:Name="mediaElementGrid" Grid.Row="5" Grid.ColumnSpan="3" Height="50" Width="300"  >
+            <MediaElement Name="MyMediaElement" AutoPlay="True" AreTransportControlsEnabled="True"
+                         AudioCategory="Media" Margin="-116,-83,-165,0" >
+                <MediaElement.TransportControls>
+                    <MediaTransportControls IsCompact="False" 
+                                            IsZoomButtonVisible="False" 
+                                            IsZoomEnabled="False"
+                                            IsPlaybackRateButtonVisible="True" 
+                                            IsPlaybackRateEnabled="False" BorderThickness="10"
+                                            IsNextTrackButtonVisible="True"
+                                            IsPreviousTrackButtonVisible="True"
+                                            IsFastForwardButtonVisible="True"
+                                            />
+                </MediaElement.TransportControls>
 
+            </MediaElement>
+        </Grid>
     </Grid>
 </Page>
 
