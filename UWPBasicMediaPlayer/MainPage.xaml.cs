@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 using UWPBasicMediaPlayer.Model;
-using Windows.ApplicationModel.VoiceCommands;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -23,7 +21,6 @@ namespace UWPBasicMediaPlayer
         private List<Feature> Features;
         private Song previousSong;
         private Song currentSong;
-        private List<String> Suggestions;
 
         public MainPage()
         {
@@ -98,14 +95,18 @@ namespace UWPBasicMediaPlayer
             if (Feature.Item == FeatureItems.Playlist)
             {
                 ItemTextBlock.Text = "All Playlists";
-                PlayListManager.GetAllPlayLists(PlayLists, SongManager.MusicFilesPath);//added
+                var allPlayLists = PlayListManager.GetAllPlayLists();
+                PlayLists.Clear();
+                allPlayLists.ForEach(pl => PlayLists.Add(pl));
+
                 BackButton.Visibility = Visibility.Visible;
                 PlayListGridView.Margin = new Thickness(20, 0, 0, 0);
                 SongGridView.Visibility = Visibility.Collapsed;
                 PlayListGridView.Visibility = Visibility.Visible;
                 ArtistsGridView.Visibility = Visibility.Collapsed;
             }
-            else {
+            else
+            {
 
                 if (Feature.Item == FeatureItems.Artists)
                 {
@@ -122,7 +123,7 @@ namespace UWPBasicMediaPlayer
                     SongGridView.Visibility = Visibility.Visible;
                     PlayListGridView.Visibility = Visibility.Collapsed;
                     ArtistsGridView.Visibility = Visibility.Collapsed;
-                   
+
                 }
             }
         }
@@ -177,21 +178,40 @@ namespace UWPBasicMediaPlayer
             timelineSlider.Value = 0;
         }
 
-
-
-        private void SearchBox_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
+        private void StackPanel_RightTapped(object sender, Windows.UI.Xaml.Input.RightTappedRoutedEventArgs e)
         {
-            SongManager.GetSongBySearch(Songs, sender.Text);
-            ItemTextBlock.Text = sender.Text;
-            BackButton.Visibility = Visibility.Visible;
+            var songMenuFlyoutSubItem = new MenuFlyoutSubItem()
+            {
+                Text = "AddToPlayList"
+            };
+
+            var icon = new BitmapIcon() { UriSource = new Uri("ms-appx:///Assets/Images/songGeneral.png") };
             
+            var playLists = PlayListManager.GetAllPlayLists();
+            foreach (var playlist in playLists)
+            {
+                var playListMenuFlyoutItem = new MenuFlyoutItem() { Text = playlist.Title };
+                playListMenuFlyoutItem.Click += AddToPlaylistMenu_ItemClick;
+                songMenuFlyoutSubItem.Items.Add(playListMenuFlyoutItem);
+            }
+
+            var addToPlaylistFlyout = new MenuFlyout();
+            addToPlaylistFlyout.Items.Add(songMenuFlyoutSubItem);
+            FrameworkElement senderElement = sender as FrameworkElement;
+            addToPlaylistFlyout.ShowAt(sender as UIElement, e.GetPosition(sender as UIElement));
         }
 
-        private void SearchBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
+        private void AddToPlaylistMenu_ItemClick(object sender, RoutedEventArgs e)
         {
-            SongManager.GetAllSongs(Songs);
-            Suggestions = Songs.Where(p => p.Title.StartsWith(sender.Text)).Select(p => p.Title).ToList();
-            SearchBox.ItemsSource = Suggestions;
+            var flyoutItem = (MenuFlyoutItem)e.OriginalSource;
+
+            // find playlist
+            var playList = PlayListManager.GetPlayListByTitle(flyoutItem.Text);
+
+            FrameworkElement senderElement = sender as FrameworkElement;
+            var song = senderElement.DataContext as Song;
+
+            playList.AddSong(song);
         }
     }
 }

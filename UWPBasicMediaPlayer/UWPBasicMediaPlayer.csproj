@@ -124,6 +124,7 @@
     </Compile>
     <Compile Include="Model\Album.cs" />
     <Compile Include="Model\Artist.cs" />
+    <Compile Include="Model\Constants.cs" />
     <Compile Include="Model\CoverPage.cs" />
     <Compile Include="Model\Feature.cs" />
     <Compile Include="Model\PlayList.cs" />

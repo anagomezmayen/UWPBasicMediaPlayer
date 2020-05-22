@@ -11,15 +11,14 @@ namespace UWPBasicMediaPlayer.Model
         #region Properties
         public string Title { get; set; }
         public List<Song> Songs { get; set; } = new List<Song>();
-       // public List<Album> Albums { get; set; } = new List<Album>();
         public string Artist { get; set; }
         #endregion
 
         #region Methods
-        //public PlayList(string title, string artist)
+        //public PlayList(string title, Song song )
         //{
         //    this.Title = title;
-        //    this.Artist = artist;
+        //    this.Songs = song;
         //}
 
         public void AddSong(Song song)
