@@ -16,8 +16,6 @@ namespace UWPBasicMediaPlayer.Model
     {
         Albums,
         Artists,
-        Favourite,
-        MyMusic,
         Playlist,
     }
 
