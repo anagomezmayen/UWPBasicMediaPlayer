@@ -140,8 +140,6 @@
   <ItemGroup>
     <Content Include="Assets\Icons\Albums.png" />
     <Content Include="Assets\Icons\Artists.png" />
-    <Content Include="Assets\Icons\Favourite.png" />
-    <Content Include="Assets\Icons\MyMusic.png" />
     <Content Include="Assets\Icons\Playlist.png" />
     <Content Include="Assets\Images\artistGeneral.png" />
     <Content Include="Assets\Images\playlistGeneral.png" />
