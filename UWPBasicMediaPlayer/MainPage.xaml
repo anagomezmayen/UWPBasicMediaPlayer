@@ -11,7 +11,7 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50" />
+            <RowDefinition Height="60" />
             <RowDefinition Height="50" />
             <RowDefinition Height="*" />
             <RowDefinition Height="50" />
@@ -32,8 +32,8 @@
         <TextBlock Grid.Row="0" Grid.Column="0" FontSize="20" Margin ="70,0,0,0" HorizontalAlignment="Left" Width="221">
              My Media Player
         </TextBlock>
-
-      <!--  <AutoSuggestBox Name="SearchBox" Grid.Row="0" Grid.Column="2" 
+    
+        <!--  <AutoSuggestBox Name="SearchBox" Grid.Row="0" Grid.Column="2" 
                         QueryIcon="Find"  
                         PlaceholderText="Search" 
                         TextChanged="SearchBox_TextChanged" 
@@ -134,6 +134,8 @@
                                 <StackPanel Orientation="Vertical" VerticalAlignment="Top"  HorizontalAlignment="Left">
                                     <Image Name="ArtistImage" Height="100" Width="100" Source="Assets/Images/albumGeneral.png" HorizontalAlignment="Center"/>
                                     <TextBlock Text="{x:Bind Name}" Margin="10,0,0,10" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                    <TextBlock Text=" by " Margin="10,0,0,10" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <TextBlock Text="{x:Bind Artist.Name}" Margin="10,0,0,10" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                                 </StackPanel>
                             </DataTemplate>
                         </GridView.ItemTemplate>

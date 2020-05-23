@@ -10,26 +10,28 @@ namespace UWPBasicMediaPlayer.Model
     {
         #region Properties
         public string Name { get; set; }
+        public int SongsNumber { get; set; } = 0;
+
+        public Artist Artist { get; set; }
 
         public bool Equals(Album album)
         {
-            return Name.Equals(album.Name);
+            return (Name.Equals(album.Name) && Artist.Name==album.Artist.Name);
         }
-       // public List<Song> Songs { get; private set; } = new List<Song>();
-       // public string  Artist { get; set; }
+
         #endregion
 
         #region Method
-        //public Album(string name, string artist)
-        ////{
-            //this.Name = name;
-         //   this.Artist = artist;
-        //}
+        public Album(string name, Artist artist)
+        {
+           this.Name = name;
+           this.Artist = artist;
+        }
 
-        //public void AddSong(Song song)
-        //{
-        //    this.Songs.Add(song);
-        //}
+        public void AddSong()
+        {
+            this.SongsNumber++;
+        }
 
         #endregion
     }

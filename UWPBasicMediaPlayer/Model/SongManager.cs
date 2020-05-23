@@ -60,10 +60,15 @@ namespace UWPBasicMediaPlayer.Model
         {
             var allSongs = GetSongs();
             albums.Clear();
-            List<string> titles = new List<string>();
-            allSongs.ForEach(s => titles.Add(s.Album));
-            titles = titles.Distinct().ToList();
-            titles.ForEach(t => albums.Add(new Album { Name = t }));
+            List<Album> albumsList = new List<Album>();
+            allSongs.ForEach(song => albumsList.Add(new Album(song.Album, new Artist { Name = song.Artist })));
+            albumsList = albumsList.Distinct().ToList();
+            albumsList.ForEach(a => albums.Add(a));
+
+            //List<string> titles = new List<string>();
+            //allSongs.ForEach(s => titles.Add(s.Album));
+            //titles = titles.Distinct().ToList();
+            //titles.ForEach(t => albums.Add(new Album { Name = t }));
         }
 
         public static void GetSongsByAlbum(ObservableCollection<Song> songs, string title)

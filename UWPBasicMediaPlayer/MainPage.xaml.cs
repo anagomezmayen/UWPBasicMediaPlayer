@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using UWPBasicMediaPlayer.Model;
+using Windows.Storage;
+using Windows.Storage.AccessCache;
+using Windows.Storage.Pickers;
+using Windows.Storage.Search;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -22,6 +27,7 @@ namespace UWPBasicMediaPlayer
         private List<Feature> Features;
         private Song previousSong;
         private Song currentSong;
+        private string MusicFolderPath;
 
         public MainPage()
         {
@@ -42,6 +48,8 @@ namespace UWPBasicMediaPlayer
             PlayListGridView.Visibility = Visibility.Collapsed;
             ArtistsGridView.Visibility = Visibility.Collapsed;
             AlbumsGridView.Visibility = Visibility.Collapsed;
+
+            MusicFolderPath = "";
         }
 
         private void HamburgerButton_Click(object sender, RoutedEventArgs e)
@@ -190,5 +198,6 @@ namespace UWPBasicMediaPlayer
             SongGridView.Visibility = Visibility.Visible;
             AlbumsGridView.Visibility = Visibility.Collapsed;
         }
+
     }
 }
