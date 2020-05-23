@@ -68,7 +68,7 @@
             </SplitView.Pane>
 
             <SplitView.Content >
-                <Grid Margin="20,0,0,100">
+                <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
@@ -94,8 +94,7 @@
                         Name="PlayListGridView"
                         IsItemClickEnabled="True"
                         ItemsSource="{x:Bind PlayLists}"
-                        ItemClick="PlayListGridView_ItemClick" 
-                        Margin="20,150,0,50">
+                        ItemClick="PlayListGridView_ItemClick" Margin="20,0,0,0">
                         <GridView.ItemTemplate>
                             <DataTemplate x:DataType="model:PlayList">
                                 <StackPanel Orientation="Vertical">
@@ -107,16 +106,15 @@
                     </GridView>
                     <!--Artists-->
                     <GridView Grid.Row="2" Grid.Column="2" 
-                        Margin="10,25,0,50"
                         Name="ArtistsGridView"
                         IsItemClickEnabled="True"
                         ItemsSource="{x:Bind Artists}"
-                        ItemClick="ArtistsGridView_ItemClick">
+                        ItemClick="ArtistsGridView_ItemClick" Margin="20,0,0,0">
                         <GridView.ItemTemplate>
                             <DataTemplate x:DataType="model:Artist">
-                                <StackPanel Orientation="Vertical" VerticalAlignment="Top"  HorizontalAlignment="Left">
+                                <StackPanel Orientation="Vertical"  VerticalAlignment="Top"  HorizontalAlignment="Left">
                                     <Image Name="ArtistImage" Height="100" Width="100" Source="Assets/Images/artistGeneral.png" HorizontalAlignment="Center"/>
-                                    <TextBlock Text="{x:Bind Name}" Margin="10,0,0,10" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                    <TextBlock Text="{x:Bind Name}" FontSize="14" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                                 </StackPanel>
                             </DataTemplate>
                         </GridView.ItemTemplate>
@@ -124,18 +122,17 @@
                     <!-- end artists-->
                     <!--Albums-->
                     <GridView Grid.Row="2" Grid.Column="2" 
-                        Margin="10,25,0,50"
                         Name="AlbumsGridView"
                         IsItemClickEnabled="True"
                         ItemsSource="{x:Bind Albums}"
-                        ItemClick="AlbumsGridView_ItemClick">
+                        ItemClick="AlbumsGridView_ItemClick" Margin="20,0,0,0">
                         <GridView.ItemTemplate>
                             <DataTemplate x:DataType="model:Album">
                                 <StackPanel Orientation="Vertical" VerticalAlignment="Top"  HorizontalAlignment="Left">
                                     <Image Name="ArtistImage" Height="100" Width="100" Source="Assets/Images/albumGeneral.png" HorizontalAlignment="Center"/>
-                                    <TextBlock Text="{x:Bind Name}" Margin="10,0,0,10" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                                    <TextBlock Text=" by " Margin="10,0,0,10" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                    <TextBlock Text="{x:Bind Artist.Name}" Margin="10,0,0,10" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                    <TextBlock Text="{x:Bind Name}"  FontSize="14" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                                    <TextBlock Text=" by " Margin ="0,0,5,0" FontSize="14" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                                    <TextBlock Text="{x:Bind Artist.Name}" FontSize="14" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                                 </StackPanel>
                             </DataTemplate>
                         </GridView.ItemTemplate>
@@ -145,11 +142,11 @@
                 </Grid>
             </SplitView.Content>
         </SplitView>
-        <StackPanel x:Name="NowPlaying" Orientation="Horizontal"  Grid.Row="3" Grid.ColumnSpan="3"  VerticalAlignment="Center"  HorizontalAlignment="Right" Height="50" Margin="0,0,0,0">
+        <StackPanel x:Name="NowPlaying" Orientation="Horizontal"  Grid.Row="3" Grid.ColumnSpan="3"  VerticalAlignment="Center"  HorizontalAlignment="Center" Height="50" Margin="0,0,0,0">
             <!--//Display Song Name That is Playing-->
-            <TextBlock Name="ArtistName" Text="Artist" TextAlignment="Center" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-            <TextBlock Text=" - " TextAlignment="Center" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-            <TextBlock Name="SongName" Text="Song" TextAlignment="Center" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+            <TextBlock Name="ArtistName" Text="Artist" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Text=" - " TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Name="SongName" Text="Song" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <!--//Display Time Duration That is Playing-->
             <TextBlock Foreground="White" VerticalAlignment="Center">Seek To</TextBlock>
          

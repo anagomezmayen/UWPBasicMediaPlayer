@@ -65,6 +65,7 @@ namespace UWPBasicMediaPlayer
             SongGridView.Visibility = Visibility.Visible;
             PlayListGridView.Visibility = Visibility.Collapsed;
             BackButton.Visibility = Visibility.Collapsed;
+            AlbumsGridView.Visibility = Visibility.Collapsed;
         }
 
         private void PlayAndupdatePreviousAndCurrentSong(Song currentSong)
@@ -192,7 +193,7 @@ namespace UWPBasicMediaPlayer
         {
             var album = (Album)e.ClickedItem;
             SongManager.GetSongsByAlbum(Songs, album.Name.Trim().ToUpper());
-            ItemTextBlock.Text = "All Songs in the Album " + album.Name;
+            ItemTextBlock.Text = "Songs Album " + album.Name;
             PlayListGridView.Visibility = Visibility.Collapsed;
             ArtistsGridView.Visibility = Visibility.Collapsed;
             SongGridView.Visibility = Visibility.Visible;
