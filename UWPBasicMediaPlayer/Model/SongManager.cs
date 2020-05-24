@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Xaml.Controls;
 
 namespace UWPBasicMediaPlayer.Model
 {
@@ -90,7 +91,7 @@ namespace UWPBasicMediaPlayer.Model
             var filteredSongs = allSongs.Where(prop => prop.Title == title).ToList();
             songs.Clear();
             filteredSongs.ForEach(p => songs.Add(p));
-            
+          
        }
     }
 }

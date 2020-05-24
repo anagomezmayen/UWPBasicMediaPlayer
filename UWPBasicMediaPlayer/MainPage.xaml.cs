@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using UWPBasicMediaPlayer.Model;
 using Windows.Storage;
 using Windows.Storage.AccessCache;
@@ -28,6 +29,7 @@ namespace UWPBasicMediaPlayer
         private Song previousSong;
         private Song currentSong;
         private string MusicFolderPath;
+        private List<String> Suggestions;
 
         public MainPage()
         {
@@ -135,6 +137,7 @@ namespace UWPBasicMediaPlayer
 
         private void SongGridView_ItemClick(object sender, ItemClickEventArgs e)
         {
+
             var song = (Song)e.ClickedItem;
             this.PlayAndupdatePreviousAndCurrentSong(song);
             ArtistName.Text = song.Artist;
@@ -200,5 +203,27 @@ namespace UWPBasicMediaPlayer
             AlbumsGridView.Visibility = Visibility.Collapsed;
         }
 
+        private void SearchBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
+        {
+            if (String.IsNullOrEmpty(sender.Text)) goBack();
+            SongManager.GetAllSongs(Songs);
+            Suggestions = Songs.Where(p => p.Title.StartsWith(sender.Text)).Select(p => p.Title).ToList();
+            SearchBox.ItemsSource = Suggestions;
+        }
+
+        private void SearchBox_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
+        {
+            SongManager.GetSongBySearch(Songs, sender.Text);
+            ItemTextBlock.Text = sender.Text;
+            SongGridView.SelectedItem = null;
+            BackButton.Visibility = Visibility.Visible;
+        }
+        private void goBack()
+        {
+            SongManager.GetAllSongs(Songs);
+            ItemTextBlock.Text = "All Songs";
+            FeaturesListView.SelectedItem = null;
+            BackButton.Visibility = Visibility.Collapsed;
+        }
     }
 }

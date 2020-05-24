@@ -33,7 +33,7 @@
              My Media Player
         </TextBlock>
     
-        <!--  <AutoSuggestBox Name="SearchBox" Grid.Row="0" Grid.Column="2" 
+          <AutoSuggestBox Name="SearchBox" Grid.Row="0" Grid.Column="2" 
                         QueryIcon="Find"  
                         PlaceholderText="Search" 
                         TextChanged="SearchBox_TextChanged" 
@@ -41,7 +41,7 @@
                         HorizontalAlignment="Right" 
                         VerticalAlignment="Center"  
                         Margin="0,10,10,0" Width="200"/>
--->
+
         <Button Name="HamburgerButton" Grid.Row="1" Grid.Column="0"
             Background="WhiteSmoke"
             FontFamily="Segoe MDL2 Assets"
